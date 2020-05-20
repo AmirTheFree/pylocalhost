@@ -1,0 +1,82 @@
+/* In the name of Allah */
+
+.container{
+    border: 2px whitesmoke inset;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: hsl(240, 61%, 20%);
+    max-width: 100%;
+}
+
+.addr{
+    font-size: 20px;
+    font-weight: bold;
+    display: inline;
+    position: relative;
+    top: -10px;
+}
+
+.addrbar{
+    text-align: left;
+    margin-left: 10px;
+}
+
+hr{
+    margin-top: 0;
+}
+
+h1{
+    font-size: 35px;
+}
+
+.static{
+    color: goldenrod;
+}
+
+
+div img{
+    max-width: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+div.table{
+    display: grid;
+}
+
+div.col{
+    margin: 15px;
+}
+
+div.col img{
+    max-width: 100px;
+    margin-bottom: 5px;
+}
+
+.a{
+    grid-column: 1;
+}
+
+.b{
+    grid-column: 2;
+}
+
+.c{
+    grid-column: 3;
+}
+
+.d{
+    grid-column: 4;
+}
+
+.e{
+    grid-column: 5;
+}
+
+.f{
+    grid-column: 6;
+}
+
+a:any-link{
+    color: yellow;
+}

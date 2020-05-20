@@ -1,0 +1,58 @@
+/* In the name of Allah */
+
+a:any-link{
+    text-decoration: none;
+    outline: none;
+}
+
+img{
+    transition: all .25s ease-out;
+}
+
+img:hover{
+    transform: scale(1.1);
+}
+
+div.grid-container-info{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-74px);
+    margin-top:20px;
+}
+
+div.grid-item-info{
+    grid-row: 1;
+}
+
+img.info{
+    max-width: 64px;
+    margin-left:10px;
+    margin-right: 10px;
+    transition: all .25s ease-out;
+}
+
+img.info:hover{
+    transform: rotateZ(360deg) scale(1.1);
+}
+
+
+body{
+    background-color: #0a0a29; 
+    color: white;
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+span.p{
+    color: yellow;
+}
+
+span.y{
+    color: blue;
+}
+
+span.lh{
+    color: greenyellow;
+}

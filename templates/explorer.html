@@ -1,0 +1,53 @@
+<!-- In the name of Allah -->
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>{% block title %}PyLocalhost{% endblock title %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename=style) }}">
+    <script src="{{ url_for('static',filename='script/jquery-3.5.1.min.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='image/favicon.ico') }}" type="image/x-icon">
+</head>
+
+<body>
+{% block content %}
+
+<center>
+
+    <h1><a href="{{ url_for('explorer') }}"><span class="p">P</span><span class="y">y</span><span
+                class="lh">LocalHost</span></a></h1>
+    <div class='container'>
+        <div class="addrbar">
+            <a href="{{ url_for('explorer') }}"><img src="{{ url_for('static',filename='image/home.png') }}"
+                    alt="Home"></a>
+            <a href=".."><img src="{{ url_for('static',filename='image/back.png') }}" alt="Back"></a>
+            <div class="addr"><span class='static'>Address: </span>~/{{ p }}</div>
+        </div>
+        <hr>
+        <div class="table">
+            {% for category in ls %}
+            {% for item in ls[category] %}
+            <div class="col">
+                <a href="{{ url_for('explorer',p = p + '/' + item['name']) }}">
+                    <img src="{{ url_for('static',filename='image/' + item['type'] + '.png') }}"
+                        alt="{{ item['type'] }}">
+                    <br>
+                    {{ item['name'] }}
+                </a>
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'includes/info_icons.html' %}
+</center>
+<script src="{{ url_for('static',filename='script/explorer.js') }}"></script>
+{% endblock content %}
+</body>
+
+</html>
