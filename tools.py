@@ -1,6 +1,6 @@
 # In the name of Allah
 
-import os
+import os,json
 
 def browser(path):
     result = {'drives':[],'folders':[],'files':[],'links':[],'unknowns':[]}
@@ -15,39 +15,12 @@ def browser(path):
         elif os.path.isdir(os.path.join(path,i)):
             result['folders'].append({'name':i,'type':'folder'})
         elif os.path.isfile(os.path.join(path,i)):
-            for s in ['.css','.sass','.scss']:
-                if i.lower().endswith(s):
-                    result['files'].append({'name':i,'type':'css'})
-            for s in ['.db','.sqlite3','.sqlite','.sql']:
-                if i.lower().endswith(s):
-                    result['files'].append({'name':i,'type':'database'})
-            for s in ['.html','.htm']:
-                if i.lower().endswith(s):
-                    result['files'].append({'name':i,'type':'html'})
-            for s in ['.png','.jpg','.jpeg','.svg','.bmp','.webp','.ico']:
-                if i.lower().endswith(s):
-                    result['files'].append({'name':i,'type':'image'})
-            for s in ['.zip','.rar','.tar','.taz','.tar.xz']:
-                if i.lower().endswith(s):
-                    result['files'].append({'name':i,'type':'zip'})
-            for s in ['.mp4','.avi','.wmv','.mkv','.gif','.ogg','.vob','.flv','webm','.ogv','.mov','.3gp','.m4v']:
-                if i.lower().endswith(s):
-                    result['files'].append({'name':i,'type':'video'})
-            for s in ['.mp3','.wav','.m4a','.ogg','.wma','.mp4a']:
-                if i.lower().endswith(s):
-                    result['files'].append({'name':i,'type':'audio'})
-            if i.lower().endswith('.py'):
-                result['files'].append({'name':i,'type':'python'})
-            if i.lower().endswith('.txt'):
-                result['files'].append({'name':i,'type':'txt'})
-            if i.lower().endswith('.js'):
-                result['files'].append({'name':i,'type':'javascript'})
-            if i.lower().endswith('.json'):
-                result['files'].append({'name':i,'type':'json'})
-            if i.lower().endswith('.php'):
-                result['files'].append({'name':i,'type':'php'})
-            if i.lower().endswith('.pdf'):
-                result['files'].append({'name':i,'type':'pdf'})
+            extentions_json_file = open('extentions.json')
+            extentions = json.load(extentions_json_file)
+            for e in extentions:
+                for s in extentions[e]:
+                    if i.lower().endswith(s):
+                        result['files'].append({'name':i,'type':e})
             recongnized = False
             for f in result['files']:
                 if i == f['name']:
@@ -58,6 +31,3 @@ def browser(path):
         else:
             result['unknowns'].append({'name':i,'type':'unknown'})
     return result
-
-
-                
