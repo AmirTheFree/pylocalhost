@@ -1,18 +1,22 @@
 # In the name of Allah
 
-from flask import Flask,abort,render_template,request,jsonify,redirect
+from flask import Flask,abort,render_template,request,jsonify,redirect,json
 import os,tools
+
+info_fp = open('info.json')
+home = json.load(info_fp)['home']
+info_fp.close()
 
 app = Flask(__name__)
 
 @app.route('/about/', methods = ['GET'])
 def about():
-    return 'about us page will be here ...'
+    return 'about us page will be here ...' # TODO make about page
 
 @app.route('/',defaults={'p':''})
 @app.route('/<path:p>/', methods=['GET'])
 def explorer(p):
-    root = os.getcwd() # TODO change this part when installer initialized ...
+    root = os.path.join(home,'Pylocalhost')
     path = os.path.join(root,p)
     if os.path.isdir(path) or os.path.ismount(path):
         ls = tools.browser(path)
