@@ -216,8 +216,7 @@ try:
 except FileNotFoundError:
     pass
 
-os.chdir('/etc/nginx/sites-enabled')
-os.symlink('/etc/nginx/sites-available/pylocalhost')
+os.symlink('/etc/nginx/sites-available/pylocalhost','/etc/nginx/sites-enabled/pylocalhost')
 
 print('Reloading Systemctl daemon ...')
 
