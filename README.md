@@ -5,7 +5,7 @@
 
 ### Description
 
-This is a web-based file explorer and its root path is your ~/Pylocalhost directory. It is useful for serving HTML files,Ajax and every thing that need a webserver.Its file explorer has a sweet GUI.Its simple and lightweight! Enjoy :)
+This is a web-based file explorer and its root path is your ~/Pylocalhost directory. It is useful for serving HTML files,Ajax and every thing that need a webserver.Its file explorer has a sweet GUI.Its simple and lightweight! Enjoy! :white_check_mark:
 
 We try to make it better. You can help us too! how? by submitting your issues (if you have) or making pull requests!
 
@@ -41,17 +41,34 @@ Or maybe in some OSs you must run:
 It will show you details. If installtion was unsuccessful please submit an issue including details and your system info.
 
 ### Usage
-Very easy! just run:
 
-`$ sudo systemctl enable --now gunicorn nginx`
+Run:
 
-And then open localhost (localhost itsself or 127.0.0.1) and then enjoy! :)
+`$ sudo pylh enable`
 
-If did not work:
+And then:
 
-`$ sudo systemctl restart gunicorn nginx`
+`$ sudo pylh start`
 
-NOTE: This part will be better in upcoming updates.
+Then go to [http://localhost](http://localhost)
+
+It will show you anything which is in ~/Pylocalhost and always it will start automaticaly when you turn your computer on :white_check_mark:
+
+Just this! :white_check_mark:
+
+A little more about PyLH CLI:
+
+`$ sudo pylh <command>`
+
+Commands: 
+
+* start --> Start Pylocalhost
+* stop --> Stop Pylocalhost
+* restart --> Reload config files & restart Pylocalhost
+* enable --> Enable run as start up for Pylocalhost
+* disable --> Disable run as start up for Pylocalhost
+* help --> Show help
+* ? --> Show help
 
 ### Update
 
@@ -62,19 +79,19 @@ To be honest, the installer is uninstaller and insaller! So follow the installio
 ***Used tools:***
 
 * Python
+    * Flask
+    * Gunicorn
+    * Jinja
 * HTML
 * CSS
 * JavaScript
-* JSON
-* Jquery
-* Jinja
-* Shell script
+    * JSON
+    * Jquery
+* Bash script
 * Nginx
-* Gunicorn
-* Flask
 
-#### Be comfortable to submit pull requests and issues :)
+_Made by an Iranian_ :iran:
 
-**In development ...**
+#### Be comfortable to submit pull requests and issues :white_check_mark:
 
 

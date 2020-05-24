@@ -34,8 +34,10 @@ def end():
     else:
         sys.stdout.write(colors['GREEN'])
         print('\nSaving your system info ...')
+        os.chdir('/etc/pylocalhost/')
         info_json_file = open('info.json','w')
         json.dump(info,info_json_file)
+        info_json_file.close()
         print('\nInstalltion completed successfully\nThank you for using Pylocalhost :)')
 atexit.register(end)
 
@@ -206,15 +208,16 @@ gunicorn_file.close()
 shutil.move('/etc/nginx/nginx.conf','/etc/nginx/nginx.conf.default')
 shutil.copy('/etc/pylocalhost/nginx.conf','/etc/nginx/nginx.conf')
 
-try:
-    os.remove('/etc/nginx/sites-enabled/default')
-except FileNotFoundError:
-    pass
+def remove_or_go(path):
+    try:
+        os.remove(path)
+    except FileNotFoundError:
+        pass
+    except Exception as e:
+        unknown_error(e)
 
-try:
-    os.remove('/etc/nginx/sites-enabled/pylocalhost')
-except FileNotFoundError:
-    pass
+remove_or_go('/etc/nginx/sites-enabled/default')
+remove_or_go('/etc/nginx/sites-enabled/pylocalhost')
 
 os.symlink('/etc/nginx/sites-available/pylocalhost','/etc/nginx/sites-enabled/pylocalhost')
 
@@ -222,6 +225,19 @@ print('Reloading Systemctl daemon ...')
 
 daemon_reload = os.popen('sudo systemctl daemon-reload')
 os.waitpid(daemon_reload._proc.pid,0)
+
+print('Intsalling CLI ...')
+
+remove_or_go('/usr/bin/pylocalhost')
+remove_or_go('/usr/bin/pylh')
+
+shutil.copy('/etc/pylocalhost/pylocalhost.sh','/usr/bin/pylocalhost')
+shutil.chown('/usr/bin/pylocalhost',user='root')
+os.popen('sudo chmod u=rwx,og=rx /usr/bin/pylocalhost')
+os.symlink('/usr/bin/pylocalhost','/usr/bin/pylh')
+
+if not os.path.isfile('/usr/bin/pylocalhost') or not os.path.islink('/usr/bin/pylh'):
+    unknown_error('Could not install CLI')
 
 print('Finalizing installtion ...')
 
