@@ -1,19 +1,25 @@
 # In the name of Allah
 
-import os,sys,atexit,time,shutil,json
+import os
+import sys
+import atexit
+import time
+import shutil
+import json
 from distutils.dir_util import copy_tree
 
 colors = {
-    'RED':'\033[1;31m',
-    'GREEN':'\033[1;32m',
-    'YELLOW':'\033[1;33m',
-    'MAGENTA':'\033[1;35m',
-    'BLUE':'\033[1;34m',
-    'CYAN':'\033[1;36m',
-    'WHITE':'\033[1;37m'
+    'RED': '\033[1;31m',
+    'GREEN': '\033[1;32m',
+    'YELLOW': '\033[1;33m',
+    'MAGENTA': '\033[1;35m',
+    'BLUE': '\033[1;34m',
+    'CYAN': '\033[1;36m',
+    'WHITE': '\033[1;37m'
 }
 
-info = {'python':None,'license_accepted':False,'installtion_complete':False,'username':None,'home':None}
+info = {'python': None, 'license_accepted': False,
+        'installtion_complete': False, 'username': None, 'home': None, 'php': None}
 
 sys.stdout.write(colors['MAGENTA'])
 print('In the name of Allah\n')
@@ -27,6 +33,8 @@ print('PyLocalhost\n')
 time.sleep(2)
 
 # Making atexit function
+
+
 def end():
     if not info['installtion_complete']:
         sys.stdout.write(colors['YELLOW'])
@@ -35,10 +43,12 @@ def end():
         sys.stdout.write(colors['GREEN'])
         print('\nSaving your system info ...')
         os.chdir('/etc/pylocalhost/')
-        info_json_file = open('info.json','w')
-        json.dump(info,info_json_file)
+        info_json_file = open('info.json', 'w')
+        json.dump(info, info_json_file)
         info_json_file.close()
         print('\nInstalltion completed successfully\nThank you for using Pylocalhost :)')
+
+
 atexit.register(end)
 
 # Asking user for accepting the license
@@ -67,6 +77,8 @@ sys.stdout.write(colors['GREEN'])
 print('Operating system supported! Starting dependencies installtion check ...\n')
 
 # Check if dependencies are installed or not
+
+
 def check_installtion(package):
     if not os.popen('which {}'.format(package)).read().startswith('/'):
         sys.stdout.write(colors['RED'])
@@ -75,13 +87,14 @@ def check_installtion(package):
     sys.stdout.write(colors['CYAN'])
     print('{} installtion found! ...'.format(package))
 
-for p in ['nginx','git','wget']:
+
+for p in ['nginx', 'git', 'wget']:
     check_installtion(p)
 sys.stdout.write(colors['GREEN'])
 print('Checking completed successfully!\n')
 
 # Checking and finding python 3
-for p in ['python3 --version','python --version']:
+for p in ['python3 --version', 'python --version']:
     if os.popen(p).read()[7] == '3':
         info['python'] = p.split()[0]
 if not info['python']:
@@ -91,25 +104,45 @@ if not info['python']:
 sys.stdout.write(colors['GREEN'])
 print('Python version 3 found! Starting installtion ...\n')
 
+# Checking PHP_FPM
+sys.stdout.write(colors['CYAN'])
+print('Checking PHP FPM ...')
+for p in ['7.4', '7.3', '7.2', '7.1', '7.0']:
+    if os.popen('which php-fpm'+p).read().startswith('/'):
+        info['php'] = p
+if not info['php']:
+    sys.stdout.write(colors['RED'])
+    print('\nCould not find PHP-FPM in your system so PyLocalhost will not be able to serve PHP files \n')
+    info['php'] = '7.4'
+else:
+    sys.stdout.write(colors['GREEN'])
+    print('\nPHP-FPM found!')
+
 # Installing virtualenv
 sys.stdout.write(colors['CYAN'])
 print('Installing virtualenv ...')
 try:
-    venv_setup = os.popen('sudo -H {} -m pip install virtualenv'.format(info['python']))
-    os.waitpid(venv_setup._proc.pid,0)
+    venv_setup = os.popen(
+        'sudo -H {} -m pip install virtualenv'.format(info['python']))
+    os.waitpid(venv_setup._proc.pid, 0)
 except BrokenPipeError:
     pass
 check_installtion('virtualenv')
 
 # Initializing venv
+
+
 def unknown_error(e):
     sys.stdout.write(colors['RED'])
     print('Unknown error: {}\n'.format(e))
     sys.exit(500)
+
+
 def permission_error():
     sys.stdout.write(colors['RED'])
     print('Not enough permissions! run file with sudo\n')
     sys.exit(403)
+
 
 sys.stdout.write(colors['CYAN'])
 print('Creating main directory ...\n')
@@ -124,6 +157,8 @@ except Exception as e:
     unknown_error(e)
 
 tries = 5
+
+
 def make_main_dir(tries):
     try:
         os.mkdir('./pylocalhost')
@@ -143,6 +178,8 @@ def make_main_dir(tries):
         permission_error()
     except Exception as e:
         unknown_error(e)
+
+
 make_main_dir(tries)
 
 os.chdir('/etc/pylocalhost')
@@ -150,16 +187,17 @@ sys.stdout.write(colors['CYAN'])
 print('Initializing virtual enviroment ...\n')
 
 venv_init = os.popen('sudo {} -m virtualenv .venv'.format(info['python']))
-os.waitpid(venv_init._proc.pid,0)
+os.waitpid(venv_init._proc.pid, 0)
 
 if not os.path.isfile('/etc/pylocalhost/.venv/bin/python'):
     unknown_error('Could not initialize virtual envirpment\n')
 
 print('Cloning software from Github ...')
 
-git_proccess = os.popen('sudo git clone https://github.com/mwxgaf/pylocalhost.git temp')
-os.waitpid(git_proccess._proc.pid,0)
-copy_tree('/etc/pylocalhost/temp','/etc/pylocalhost')
+git_proccess = os.popen(
+    'sudo git clone https://github.com/mwxgaf/pylocalhost.git temp')
+os.waitpid(git_proccess._proc.pid, 0)
+copy_tree('/etc/pylocalhost/temp', '/etc/pylocalhost')
 shutil.rmtree('/etc/pylocalhost/temp')
 
 if not os.path.isfile('/etc/pylocalhost/app.py'):
@@ -168,7 +206,7 @@ if not os.path.isfile('/etc/pylocalhost/app.py'):
 print('Downloading Jquery ...')
 os.chdir('/etc/pylocalhost/static/script')
 jquery_download = os.popen('wget https://code.jquery.com/jquery-3.5.1.min.js')
-os.waitpid(jquery_download._proc.pid,0)
+os.waitpid(jquery_download._proc.pid, 0)
 os.chdir('/etc/pylocalhost')
 
 if not os.path.isfile('/etc/pylocalhost/static/script/jquery-3.5.1.min.js'):
@@ -177,8 +215,9 @@ if not os.path.isfile('/etc/pylocalhost/static/script/jquery-3.5.1.min.js'):
 print('Installing dependencies ...')
 
 try:
-    req_install_porcess = os.popen('sudo -H /etc/pylocalhost/.venv/bin/pip install -r requirements.txt')
-    os.waitpid(req_install_porcess._proc.pid,0)
+    req_install_porcess = os.popen(
+        'sudo -H /etc/pylocalhost/.venv/bin/pip install -r requirements.txt')
+    os.waitpid(req_install_porcess._proc.pid, 0)
 except BrokenPipeError:
     pass
 
@@ -192,21 +231,22 @@ info['home'] = os.popen('echo $HOME').read()[:-1]
 info['username'] = info['home'].split('/')[2]
 
 os.chdir(info['home'])
-os.makedirs('Pylocalhost',exist_ok=True)
-shutil.chown(os.path.join(info['home'],'Pylocalhost'),user=info['username'])
+os.makedirs('Pylocalhost', exist_ok=True)
+shutil.chown(os.path.join(info['home'], 'Pylocalhost'), user=info['username'])
 os.popen('sudo chmod ug=rwx,o=rx Pylocalhost/')
 os.chdir('/etc/pylocalhost')
 
-pylocalhost_file = open('/etc/nginx/sites-available/pylocalhost','w')
-pylocalhost_file.write('server {\n    listen 80 default_server;\n    listen [::]:80;\n    root %s/Pylocalhost;\n    server_name localhost;\n    location /static {\n        alias /etc/pylocalhost/static;\n    }\n    location /s {\n        alias %s/Pylocalhost;\n    }\n    location / {\n        try_files $uri @wsgi;\n    }\n    location @wsgi {\n        proxy_pass http://unix:/tmp/gunicorn.sock;\n        include proxy_params;\n    }\n}' % (info['home'],info['home']))
+pylocalhost_file = open('/etc/nginx/sites-available/pylocalhost', 'w')
+pylocalhost_file.write('server {\n    listen 80 default_server;\n    listen [::]:80;\n    root %s/Pylocalhost;\n    server_name localhost;\n    location /static {\n        alias /etc/pylocalhost/static;\n    }\n    location /s {\n        alias %s/Pylocalhost;\n\n        location ~ \.php$ {\n            fastcgi_pass unix:/run/php/php%s-fpm.sock;\n            include fastcgi_params;\n            fastcgi_param SCRIPT_FILENAME $request_filename;\n        }\n    }\n    location / {\n        try_files $uri @wsgi;\n    }\n    location @wsgi {\n        proxy_pass http://unix:/tmp/gunicorn.sock;\n        include proxy_params;\n    }\n}' % (info['home'], info['home'], info['php']))
 pylocalhost_file.close()
 
-gunicorn_file = open('/etc/systemd/system/gunicorn.service','w')
+gunicorn_file = open('/etc/systemd/system/gunicorn.service', 'w')
 gunicorn_file.write('[Unit]\nDescription=gunicorn daemon for Pylocalhost\nAfter=network.target\n\n[Service]\nUser={}\nGroup=www-data\nRuntimeDirectory=gunicorn\nWorkingDirectory=/etc/pylocalhost/\nExecStart=/etc/pylocalhost/.venv/bin/gunicorn --bind=unix:/tmp/gunicorn.sock --workers=2 app:app\nExecReload=/bin/kill -s HUP $MAINPID\nExecStop=/bin/kill -s TERM $MAINPID\n\n[Install]\nWantedBy=multi-user.target'.format(info['username']))
 gunicorn_file.close()
 
-shutil.move('/etc/nginx/nginx.conf','/etc/nginx/nginx.conf.default')
-shutil.copy('/etc/pylocalhost/nginx.conf','/etc/nginx/nginx.conf')
+shutil.move('/etc/nginx/nginx.conf', '/etc/nginx/nginx.conf.default')
+shutil.copy('/etc/pylocalhost/nginx.conf', '/etc/nginx/nginx.conf')
+
 
 def remove_or_go(path):
     try:
@@ -216,25 +256,27 @@ def remove_or_go(path):
     except Exception as e:
         unknown_error(e)
 
+
 remove_or_go('/etc/nginx/sites-enabled/default')
 remove_or_go('/etc/nginx/sites-enabled/pylocalhost')
 
-os.symlink('/etc/nginx/sites-available/pylocalhost','/etc/nginx/sites-enabled/pylocalhost')
+os.symlink('/etc/nginx/sites-available/pylocalhost',
+           '/etc/nginx/sites-enabled/pylocalhost')
 
 print('Reloading Systemctl daemon ...')
 
 daemon_reload = os.popen('sudo systemctl daemon-reload')
-os.waitpid(daemon_reload._proc.pid,0)
+os.waitpid(daemon_reload._proc.pid, 0)
 
 print('Intsalling CLI ...')
 
 remove_or_go('/usr/bin/pylocalhost')
 remove_or_go('/usr/bin/pylh')
 
-shutil.copy('/etc/pylocalhost/pylocalhost.sh','/usr/bin/pylocalhost')
-shutil.chown('/usr/bin/pylocalhost',user='root')
+shutil.copy('/etc/pylocalhost/pylocalhost.sh', '/usr/bin/pylocalhost')
+shutil.chown('/usr/bin/pylocalhost', user='root')
 os.popen('sudo chmod u=rwx,og=rx /usr/bin/pylocalhost')
-os.symlink('/usr/bin/pylocalhost','/usr/bin/pylh')
+os.symlink('/usr/bin/pylocalhost', '/usr/bin/pylh')
 
 if not os.path.isfile('/usr/bin/pylocalhost') or not os.path.islink('/usr/bin/pylh'):
     unknown_error('Could not install CLI')
