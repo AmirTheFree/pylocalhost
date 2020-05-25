@@ -225,6 +225,7 @@ if not os.path.isfile('/etc/pylocalhost/.venv/bin/gunicorn'):
     unknown_error('\nCould not install dependencies!')
 
 # Create and write Nginx and Gunicorn config file
+sys.stdout.write(colors['CYAN'])
 print('Configuring your system ...')
 
 info['home'] = os.popen('echo $HOME').read()[:-1]

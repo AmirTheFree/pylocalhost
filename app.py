@@ -27,4 +27,4 @@ def explorer(p):
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect('http://localhost/s/' + p)
     else:
-        return abort(404)  # TODO render a custom 404 error page instead
+        return render_template('404.html',p=p)

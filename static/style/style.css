@@ -133,3 +133,24 @@ div.col img{
 .f{
     grid-column: 6;
 }
+
+h1.error{
+    font-size: 100px;
+    color: #ff0066;
+    margin-bottom: 25px;
+}
+
+p.notfound{
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    border: inset 2px yellow;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: max-content;
+}
+
+div.nfnav img{
+    max-width: 64px;
+}

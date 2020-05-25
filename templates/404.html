@@ -1,0 +1,17 @@
+{% extends 'explorer.html' %}
+
+{% block title %}PyLH | 404 Not Found!{% endblock title %}
+
+{% block content %}
+<center>
+    <h1><a href="{{ url_for('explorer') }}"><span class="p">P</span><span class="y">y</span><span
+                class="lh">LocalHost</span></a></h1>
+    <h1 class="error">404 Not Found!</h1>
+    <div class="nfnav">
+        <a href="{{ url_for('explorer') }}"><img src="{{ url_for('static',filename='image/home.png') }}" alt="Home"></a>
+        <a href=".."><img src="{{ url_for('static',filename='image/back.png') }}" alt="Back"></a>
+    </div>
+    <p class="notfound">Address: ~/Pylocalhost/{{ p }}</p>
+    {% include 'includes/info_icons.html' %}
+</center>
+{% endblock content %}
