@@ -285,6 +285,8 @@ if not os.path.isfile('/usr/bin/pylocalhost') or not os.path.islink('/usr/bin/py
 print('Creating test files ...')
 try:
     copy_tree('/etc/pylocalhost/templates/test',os.path.join(info['home'],'Pylocalhost'))
+    shutil.chown(os.path.join(info['home'],'Pylocalhost','test.html'),user=info['username'])
+    shutil.chown(os.path.join(info['home'],'Pylocalhost','test.php'),user=info['username'])
 except:
     pass
 
