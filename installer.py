@@ -282,6 +282,12 @@ os.symlink('/usr/bin/pylocalhost', '/usr/bin/pylh')
 if not os.path.isfile('/usr/bin/pylocalhost') or not os.path.islink('/usr/bin/pylh'):
     unknown_error('Could not install CLI')
 
+print('Creating test files ...')
+try:
+    copy_tree('/etc/pylocalhost/templates/test',os.path.join(info['home'],'Pylocalhost'))
+except:
+    pass
+
 print('Finalizing installtion ...')
 
 time.sleep(2)
