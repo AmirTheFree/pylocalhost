@@ -1,0 +1,31 @@
+{% extends 'explorer.html' %}
+
+{% block title %}User Manual | PyLH{% endblock title %}
+
+{% block content %}
+{% include 'includes/title.html' %}
+A server for serving and rendering files in localhost.
+<br>
+This is a web-based file explorer and its root path is your ~/Pylocalhost directory.
+<br>
+It is useful for serving HTML,Ajax,PHP and every thing that needs a webserver.
+<br>
+<br>
+CLI Usage:
+<br>
+<br>
+<code>$ sudo pylh &lt;command&gt;</code>
+<br>
+<br>
+Commands:
+<ul>
+    <li>start --> Start Pylocalhost</li>
+    <li>stop --> Stop Pylocalhost</li>
+    <li>restart --> Reload config files & restart Pylocalhost</li>
+    <li>enable --> Enable run as start up for Pylocalhost</li>
+    <li>disable --> Disable run as start up for Pylocalhost</li>
+    <li>help --> Show help</li>
+    <li>? --> Show help</li>
+</ul>
+<p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our Github</a></i></b></u> if you have a problem.</p>
+{% endblock content %}

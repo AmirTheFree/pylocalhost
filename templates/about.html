@@ -1,0 +1,33 @@
+{% extends 'explorer.html' %}
+
+{% block title %}About Us | PyLH{% endblock title %}
+
+{% block content %}
+{% include 'includes/title.html' %}
+A server for serving and rendering files in localhost.
+<br>
+This is a web-based file explorer and its root path is your ~/Pylocalhost directory.
+<br>
+It is useful for serving HTML,Ajax,PHP and every thing that needs a webserver.
+<br>
+<br>
+Made By:
+<br>
+<p class="about">
+MWX
+<br>
+Amirreza Aliakbari
+<br>
+An Iranian Boy <img src="{{ url_for('static',filename='image/iran.png') }}" alt="Iran" class="flag">
+<br>
+Born in 2003
+<br>
+</p>
+More at:
+<br>
+<a href="https://twitter.com/mwxgaf?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @mwxgaf</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<br>
+And:
+<br>
+<i><b><u><a href="http://mwxgaf.ir">mwxgaf.ir</a></i></b></u>
+{% endblock content %}

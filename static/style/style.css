@@ -19,7 +19,7 @@ div.grid-container-info{
     grid-template-columns: auto auto auto auto;
     position: absolute;
     left: 50%;
-    transform: translateX(-74px);
+    transform: translateX(-116px);
     margin-top:20px;
 }
 
@@ -149,8 +149,23 @@ p.notfound{
     border-radius: 20px;
     padding: 20px;
     max-width: max-content;
+    background-color: hsl(240, 61%, 20%);
 }
 
 div.nfnav img{
     max-width: 64px;
+}
+
+img.flag{
+    max-width: 30px;
+}
+
+p.about{
+    font-size: 25px;
+    color: yellow;
+}
+
+p.support{
+    font-size: 20px;
+    color: #ff0066;
 }

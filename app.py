@@ -13,7 +13,12 @@ app = Flask(__name__)
 
 @app.route('/about/', methods=['GET'])
 def about():
-    return 'about us page will be here ...'  # TODO make about page
+    return render_template('about.html')
+
+
+@app.route('/help/', methods=['GET'])
+def guid():
+    return render_template('help.html')
 
 
 @app.route('/', defaults={'p': ''})
