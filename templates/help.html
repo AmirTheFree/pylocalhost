@@ -11,6 +11,14 @@ This is a web-based file explorer and its root path is your ~/Pylocalhost direct
 It is useful for serving HTML,Ajax,PHP and every thing that needs a webserver.
 <br>
 <br>
+NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end
+of directory urls.
+<br>
+For example:
+<br>
+http://localhost/folder1/folder2/ (Returns the GUI file manager) --> http://localhost/folder1/folder2/?api=true (Returns JSON)
+<br>
+<br>
 CLI Usage:
 <br>
 <br>
@@ -27,5 +35,6 @@ Commands:
     <li>help --> Show help</li>
     <li>? --> Show help</li>
 </ul>
-<p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our Github</a></i></b></u> if you have a problem.</p>
+<p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our
+                    Github</a></i></b></u> if you have a problem.</p>
 {% endblock content %}

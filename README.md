@@ -61,6 +61,12 @@ It will show you anything which is in `~/Pylocalhost` and always it will start a
 
 Just this! :heavy_check_mark: 
 
+NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end of directory urls.
+
+For example:
+
+`http://localhost/folder1/folder2/`(Returns the GUI file manager) --> `http://localhost/folder1/folder2/?api=true`(Returns JSON)
+
 A little more about PyLH CLI:
 
 `$ sudo pylh <command>`
