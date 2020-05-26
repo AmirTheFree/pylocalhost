@@ -14,12 +14,12 @@ We try to make it better. You can help us too! How? By submitting your issues (i
 
 ### Installtion
 
-Before installtion you need: `nginx` , `git` & `wget`
+Before installtion you need: `nginx` & `git`
 
 If you don't have them try installing theme
 (Exmaple for Ubuntu):
 
-`$ sudo apt install nginx git wget`
+`$ sudo apt install nginx git`
 
 If you want Pylocalhost to serve and render PHP files you will also need `php-fpm` Version 7.0 or higher(Exmaple for Ubuntu):
 
@@ -97,7 +97,6 @@ To be honest, the installer is uninstaller and insaller! So follow the installio
 * CSS
 * JavaScript
     * JSON
-    * Jquery
 * Bash script
 * Nginx
 

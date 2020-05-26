@@ -202,16 +202,7 @@ shutil.rmtree('/etc/pylocalhost/temp')
 
 if not os.path.isfile('/etc/pylocalhost/app.py'):
     unknown_error('\nCloud not clone git repository successfully!')
-
-print('Downloading Jquery ...')
-os.chdir('/etc/pylocalhost/static/script')
-jquery_download = os.popen('wget https://code.jquery.com/jquery-3.5.1.min.js')
-os.waitpid(jquery_download._proc.pid, 0)
-os.chdir('/etc/pylocalhost')
-
-if not os.path.isfile('/etc/pylocalhost/static/script/jquery-3.5.1.min.js'):
-    unknown_error('\nCould not Download Jquery!')
-
+        
 print('Installing dependencies ...')
 
 try:
