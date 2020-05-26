@@ -88,7 +88,7 @@ def check_installtion(package):
     print('{} installtion found! ...'.format(package))
 
 
-for p in ['nginx', 'git', 'wget']:
+for p in ['nginx', 'git']:
     check_installtion(p)
 sys.stdout.write(colors['GREEN'])
 print('Checking completed successfully!\n')
