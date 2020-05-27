@@ -106,7 +106,7 @@ div.col{
 }
 
 div.col img{
-    max-width: 100px;
+    max-width: 75px;
     margin-bottom: 5px;
 }
 
@@ -132,6 +132,10 @@ div.col img{
 
 .f{
     grid-column: 6;
+}
+
+.g{
+    grid-column: 7;
 }
 
 h1.error{
