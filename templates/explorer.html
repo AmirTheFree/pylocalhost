@@ -28,7 +28,7 @@
             {% for category in ls %}
             {% for item in ls[category] %}
             <div class="col">
-                <a href="{{ url_for('explorer',p = p + '/' + item['name']) }}">
+                <a href="{{ url_for('explorer',p = p + '/' + item['name']) }}" {% if not item['type'] in ['folder','drive'] %}target = "blank"{% endif %}>
                     <img src="{{ url_for('static',filename='image/' + item['type'] + '.png') }}"
                         alt="{{ item['type'] }}">
                     <br>
