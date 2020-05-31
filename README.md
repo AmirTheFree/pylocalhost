@@ -92,7 +92,7 @@ To be honest, the installer is uninstaller and insaller! So follow the installio
 * Python
     * Flask
     * Jinja
-    * Gunicorn
+    * GUnicorn
 * HTML
 * CSS
 * JavaScript

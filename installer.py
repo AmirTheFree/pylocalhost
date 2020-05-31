@@ -229,7 +229,7 @@ os.popen('sudo chmod ug=rwx,o=rx Pylocalhost/')
 os.chdir('/etc/pylocalhost')
 
 pylocalhost_file = open('/etc/nginx/sites-available/pylocalhost', 'w')
-pylocalhost_file.write('server {\n    listen 80 default_server;\n    listen [::]:80;\n    root %s/Pylocalhost;\n    server_name localhost;\n    location /static {\n        alias /etc/pylocalhost/static;\n\n        location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {\n            expires 365d;\n        }\n    }\n    location /s {\n        alias %s/Pylocalhost;\n\n        location ~ \.php$ {\n            fastcgi_pass unix:/run/php/php%s-fpm.sock;\n            include fastcgi_params;\n            fastcgi_param SCRIPT_FILENAME $request_filename;\n        }\n    }\n    location / {\n        try_files $uri @wsgi;\n    }\n    location @wsgi {\n        proxy_pass http://unix:/tmp/gunicorn.sock;\n        include proxy_params;\n    }\n}' % (info['home'], info['home'], info['php']))
+pylocalhost_file.write('server {\n    listen 80 default_server;\n    listen [::]:80;\n    root %s/Pylocalhost;\n    server_name localhost;\n    location /static {\n        alias /etc/pylocalhost/static;\n        expires 365d;\n    }\n    location /s {\n        alias %s/Pylocalhost;\n\n        location ~ \.php$ {\n            fastcgi_pass unix:/run/php/php%s-fpm.sock;\n            include fastcgi_params;\n            fastcgi_param SCRIPT_FILENAME $request_filename;\n        }\n    }\n    location / {\n        try_files $uri @wsgi;\n    }\n    location @wsgi {\n        proxy_pass http://unix:/tmp/gunicorn.sock;\n        include proxy_params;\n    }\n}' % (info['home'], info['home'], info['php']))
 pylocalhost_file.close()
 
 gunicorn_file = open('/etc/systemd/system/gunicorn.service', 'w')
