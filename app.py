@@ -11,14 +11,23 @@ info_fp.close()
 app = Flask(__name__)
 
 
+@app.before_request
+def check_host():
+    info_fp = open('info.json')
+    host = json.load(info_fp)['host']
+    info_fp.close()
+
+    if not host:
+        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            abort(403)
+
+
 @app.route('/about/', methods=['GET'])
-@tools.check_host
 def about():
     return render_template('about.html')
 
 
 @app.route('/help/', methods=['GET'])
-@tools.check_host
 def guid():
     print(request.url)
     return render_template('help.html')
@@ -26,7 +35,6 @@ def guid():
 
 @app.route('/', defaults={'p': ''})
 @app.route('/<path:p>/', methods=['GET'])
-@tools.check_host
 def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)

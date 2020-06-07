@@ -37,17 +37,3 @@ def browser(path):
             result['unknowns'].append({'name': i, 'type': 'unknown'})
     return result
 
-def check_host(function):
-    @wraps(function)
-    def decorator(*args,**kwargs):
-        info_fp = open('info.json')
-        host = json.load(info_fp)['host']
-        info_fp.close()
-
-        if not host:
-            if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
-                abort(403)
-        return function(*args,**kwargs)
-    return decorator
-
-
