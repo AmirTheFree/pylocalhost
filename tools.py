@@ -45,7 +45,7 @@ def check_host(function):
         info_fp.close()
 
         if not host:
-            if not ((request.host == 'localhost' and request.url.splite('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.splite('/')[2] == '127.0.0.1')):
+            if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
                 abort(403)
         return function(*args,**kwargs)
     return decorator
