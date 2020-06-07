@@ -12,17 +12,21 @@ app = Flask(__name__)
 
 
 @app.route('/about/', methods=['GET'])
+@tools.check_host
 def about():
     return render_template('about.html')
 
 
 @app.route('/help/', methods=['GET'])
+@tools.check_host
 def guid():
+    print(request.url)
     return render_template('help.html')
 
 
 @app.route('/', defaults={'p': ''})
 @app.route('/<path:p>/', methods=['GET'])
+@tools.check_host
 def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)

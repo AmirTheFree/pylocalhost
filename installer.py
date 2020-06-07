@@ -19,7 +19,7 @@ colors = {
 }
 
 info = {'python': None, 'license_accepted': False,
-        'installtion_complete': False, 'username': None, 'home': None, 'php': None}
+        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':False}
 
 sys.stdout.write(colors['MAGENTA'])
 print('In the name of Allah\n')
