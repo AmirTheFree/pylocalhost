@@ -6,6 +6,7 @@ import atexit
 import time
 import shutil
 import json
+import random
 from distutils.dir_util import copy_tree
 
 colors = {
@@ -19,7 +20,7 @@ colors = {
 }
 
 info = {'python': None, 'license_accepted': False,
-        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':False}
+        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':False,'secret':None}
 
 sys.stdout.write(colors['MAGENTA'])
 print('In the name of Allah\n')
@@ -56,7 +57,7 @@ sys.stdout.write(colors['CYAN'])
 print('This software is licensed under MPL-2.0\n(Mozilla public license - version 2.0)\n')
 while not info['license_accepted']:
     sys.stdout.write(colors['YELLOW'])
-    accept_question = input('Do you agree with the license (y/n)? ')
+    accept_question = input('Are you agree with the license (y/n)? ')
     print('\n')
     if accept_question.lower() == 'y':
         info['license_accepted'] = True
@@ -280,6 +281,9 @@ try:
     shutil.chown(os.path.join(info['home'],'Pylocalhost','test.php'),user=info['username'])
 except:
     pass
+
+print('Making secret key ...')
+info['secret'] = random.randint(10000000000000,99999999999999)
 
 print('Finalizing installtion ...')
 

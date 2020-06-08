@@ -3,19 +3,17 @@
 from flask import Flask, abort, render_template, request, jsonify, redirect, json
 import os
 import tools
+import forms
 
-info_fp = open('info.json')
-home = json.load(info_fp)['home']
-info_fp.close()
+
+home = tools.info_file()['home']    
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = tools.info_file()['secret']
 
 @app.before_request
 def check_host():
-    info_fp = open('info.json')
-    host = json.load(info_fp)['host']
-    info_fp.close()
+    host = tools.info_file()['host']
 
     if not host:
         if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
@@ -31,6 +29,23 @@ def about():
 def guid():
     print(request.url)
     return render_template('help.html')
+
+
+@app.route('/settings/', methods=['GET','POST'])
+def settings():
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            abort(403)
+    inf = tools.info_file()
+    if request.method == 'POST':
+        form = forms.SettingsForm(request.form)
+        if not form.validate_on_submit():
+            abort(400)
+        inf['host'] = True if form.host.data == '1' else False
+        tools.info_file(inf)
+        
+    form = forms.SettingsForm()
+    data = {'host':'1' if inf['host'] else '0'}
+    return render_template('settings.html',form=form,data = data)
 
 
 @app.route('/', defaults={'p': ''})

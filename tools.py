@@ -2,9 +2,6 @@
 
 import os
 import json
-from flask import request,abort
-from functools import wraps
-
 
 def browser(path):
     result = {'drives': [], 'folders': [],
@@ -37,3 +34,12 @@ def browser(path):
             result['unknowns'].append({'name': i, 'type': 'unknown'})
     return result
 
+def info_file(content=None):
+    if not content:
+        fp = open('info.json')
+        data = json.load(fp)
+        fp.close()
+        return data
+    fp = open('info.json','w')
+    json.dump(content,fp)
+    fp.close()

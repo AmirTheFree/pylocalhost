@@ -1,5 +1,5 @@
 # PyLocalhost
-## A server for serving and rendering files in localhost 
+## A server for serving and rendering files in localhost + some interesting options
 
 **_In the name of Allah_**
 

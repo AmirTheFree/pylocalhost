@@ -16,7 +16,8 @@ of directory urls.
 <br>
 For example:
 <br>
-http://localhost/folder1/folder2/ (Returns the GUI file manager) --> http://localhost/folder1/folder2/?api=true (Returns JSON)
+http://localhost/folder1/folder2/ (Returns the GUI file manager) --> http://localhost/folder1/folder2/?api=true (Returns
+JSON)
 <br>
 <br>
 CLI Usage:
@@ -35,6 +36,19 @@ Commands:
     <li>help --> Show help</li>
     <li>? --> Show help</li>
 </ul>
+<h4>Settings help</h4>
+<p><b>Allow requests from unknown hosts:</b>
+    <br>
+    Allow this option if you want to share your Pylocalhost over network
+    <br>
+    If you disallow this option Pylocalhost will be available only from http://localhost or http://127.0.0.1 so other people cannot accesss to your pylocalhost and it is only accessible form your computer and localhost(or its ip : 127 ...)
+    <br>
+    NOTE: This option is disallowed by default
+    <br>
+    WARNING: If you allow this option your Pylocalhost will be shared over network be sure and aware about what are you doing.
+    <br>
+    NOTE: Settings part won't be accessible by other people even if you allow this option.
+</p>
 <p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our
                     Github</a></i></b></u> if you have a problem.</p>
 {% endblock content %}

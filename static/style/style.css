@@ -19,7 +19,7 @@ div.grid-container-info{
     grid-template-columns: auto auto auto auto;
     position: absolute;
     left: 50%;
-    transform: translateX(-116px);
+    transform: translateX(-158px);
     margin-top:20px;
 }
 
@@ -172,4 +172,27 @@ p.about{
 p.support{
     font-size: 20px;
     color: #ff0066;
+}
+
+.settings{
+    width: 50%;
+}
+
+ul#host,ul#host li{
+    display: inline-block;
+    list-style-type: none;
+}
+
+input[type=radio]{
+    float: right;
+    margin-right: 10px;
+}
+
+input[type=submit]{
+    background-color: green;
+    border: 0px outset;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    border-radius: 7px;
 }
