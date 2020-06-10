@@ -47,7 +47,7 @@ def end():
         info_json_file = open('info.json', 'w')
         json.dump(info, info_json_file)
         info_json_file.close()
-        shutil.chown('/etc/pylocalhost',info['username'])
+        shutil.chown('/etc/pylocalhost/info.json',info['username'])
         print('\nInstalltion completed successfully\nThank you for using Pylocalhost :)')
 
 
