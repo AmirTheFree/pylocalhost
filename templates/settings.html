@@ -7,7 +7,7 @@
     {% include 'includes/title.html' %}
     <div class="container settings">
         <h1>Settings</h1>
-        <form action="/settings/" method="POST">
+        <form action="{{ url_for('settings') }}" method="POST">
             {{ form.hidden_tag() }}
             Allow requests from unknown hosts : {{ form.host }}
             <br>

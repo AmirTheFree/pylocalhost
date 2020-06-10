@@ -31,7 +31,7 @@ def guid():
     return render_template('help.html')
 
 
-@app.route('/settings/', methods=['GET','POST'])
+@app.route('/config/', methods=['GET','POST'])
 def settings():
     if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
             abort(403)

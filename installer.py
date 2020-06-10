@@ -47,6 +47,7 @@ def end():
         info_json_file = open('info.json', 'w')
         json.dump(info, info_json_file)
         info_json_file.close()
+        shutil.chown('/etc/pylocalhost',info['username'])
         print('\nInstalltion completed successfully\nThank you for using Pylocalhost :)')
 
 
@@ -283,7 +284,7 @@ except:
     pass
 
 print('Making secret key ...')
-info['secret'] = random.randint(10000000000000,99999999999999)
+info['secret'] = str(random.randint(10000000000000,99999999999999))
 
 print('Finalizing installtion ...')
 
