@@ -12,7 +12,7 @@ This is a web-based file explorer and its root path is your `~/Pylocalhost` dire
 
 We try to make it better. You can help us too! How? By submitting your issues (if you have) or making pull requests!
 
-### Installtion
+### Prerequisites
 
 Before installtion you need: `nginx` & `git`
 
@@ -31,7 +31,9 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 `$ sudo systemctl enable --now php7.4-fpm`
 
-Then download `installer.py` file which is in the repository.
+### Installation
+
+Download `installer.py` file which is in the repository.
 
 You can get it from terminal using wget:
 
