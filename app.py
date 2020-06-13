@@ -27,7 +27,6 @@ def about():
 
 @app.route('/help/', methods=['GET'])
 def guid():
-    print(request.url)
     return render_template('help.html')
 
 

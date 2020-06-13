@@ -37,7 +37,7 @@ Download `installer.py` file which is in the repository.
 
 You can get it from terminal using wget:
 
-`$ wget https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/installer.py`
+`$ wget --no-dns-cache https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/installer.py`
 
 After that just run the file with **python 3** under sudo:
 
@@ -86,6 +86,10 @@ Commands:
 ### Update
 
 To be honest, the installer is uninstaller and insaller! So follow the installion process to update the software!
+
+And then run:(to prevent possible problems):
+
+`$ sudo pylh restart`
 
 ### Info
 
