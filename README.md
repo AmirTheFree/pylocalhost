@@ -99,6 +99,7 @@ And then run:(to prevent possible problems):
     * Flask
     * Jinja
     * GUnicorn
+    * [MWXpy](https://github.com/mwxgaf/mwxpy)
 * HTML
 * CSS
 * JavaScript

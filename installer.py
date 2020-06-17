@@ -5,7 +5,7 @@ import sys
 import atexit
 import time
 import shutil
-import json
+import mwxpy
 import random
 from distutils.dir_util import copy_tree
 
@@ -44,9 +44,7 @@ def end():
         sys.stdout.write(colors['GREEN'])
         print('\nSaving your system info ...')
         os.chdir('/etc/pylocalhost/')
-        info_json_file = open('info.json', 'w')
-        json.dump(info, info_json_file)
-        info_json_file.close()
+        mwxpy.rwjson('info.json',info)
         shutil.chown('/etc/pylocalhost/info.json',info['username'])
         print('\nInstalltion completed successfully\nThank you for using Pylocalhost :)')
 

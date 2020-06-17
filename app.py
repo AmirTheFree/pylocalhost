@@ -2,18 +2,18 @@
 
 from flask import Flask, abort, render_template, request, jsonify, redirect, json
 import os
-import tools
 import forms
+import mwxpy
 
 
-home = tools.info_file()['home']    
+home = mwxpy.rwjson('info.json')['home']
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = tools.info_file()['secret']
+app.config['SECRET_KEY'] = mwxpy.rwjson('info.json')['secret']
 
 @app.before_request
 def check_host():
-    host = tools.info_file()['host']
+    host = mwxpy.rwjson('info.json')['host']
 
     if not host:
         if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
@@ -34,13 +34,13 @@ def guid():
 def settings():
     if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
             abort(403)
-    inf = tools.info_file()
+    inf = mwxpy.rwjson('info.json')
     if request.method == 'POST':
         form = forms.SettingsForm(request.form)
         if not form.validate_on_submit():
             abort(400)
         inf['host'] = True if form.host.data == '1' else False
-        tools.info_file(inf)
+        mwxpy.rwjson('info.json',inf)
         
     form = forms.SettingsForm()
     data = {'host':'1' if inf['host'] else '0'}
@@ -53,7 +53,7 @@ def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)
     if os.path.isdir(path) or os.path.ismount(path):
-        ls = tools.browser(path)
+        ls = mwxpy.browse(path)
         return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, title=os.path.basename(path), p=p)
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect('http://localhost/s/' + p)
