@@ -33,6 +33,8 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 ### Installation
 
+#### NOTE: This version is unstable --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.0) for the latest stable version (1.0).
+
 Download `installer.py` file which is in the repository.
 
 You can get it from terminal using wget:
@@ -45,7 +47,7 @@ After that just run the file with **python 3** under sudo:
 
 In some OSs may be you must type `python3` instead of `python`
 
-It will show you details. If installtion was unsuccessful please submit an issue including details and your system info.
+It will show you details. If installation was unsuccessful please submit an issue including details and your system info.
 
 ### Usage
 
@@ -63,25 +65,7 @@ It will show you anything which is in `~/Pylocalhost` and always it will start a
 
 Just this! :heavy_check_mark: 
 
-NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end of directory urls.
-
-For example:
-
-`http://localhost/folder1/folder2/`(Returns the GUI file manager) --> `http://localhost/folder1/folder2/?api=true`(Returns JSON)
-
-A little more about PyLH CLI:
-
-`$ sudo pylh <command>`
-
-Commands: 
-
-* start --> Start Pylocalhost
-* stop --> Stop Pylocalhost
-* restart --> Reload config files & restart Pylocalhost
-* enable --> Enable run as start up for Pylocalhost
-* disable --> Disable run as start up for Pylocalhost
-* help --> Show help
-* ? --> Show help
+_**This descriptions are for starting using PyLocalHost. In user manual page(which is in PyLocalHost) you can learn using PyLocalHosts futures and options**_.
 
 ### Update
 

@@ -12,37 +12,51 @@
 </head>
 
 <body>
-{% block content %}
-
-<center>
-    {% include 'includes/title.html' %}
-    <div class='container'>
-        <div class="addrbar">
-            <a href="{{ url_for('explorer') }}"><img src="{{ url_for('static',filename='image/home.png') }}"
-                    alt="Home"></a>
-            <a href=".."><img src="{{ url_for('static',filename='image/back.png') }}" alt="Back"></a>
-            <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
-        </div>
-        <hr>
-        <div class="table">
-            {% for category in ls %}
-            {% for item in ls[category] %}
-            <div class="col">
-                <a href="{{ url_for('explorer',p = p + '/' + item['name']) }}" {% if not item['type'] in ['folder','drive'] %}target = "blank"{% endif %}>
-                    <img src="{{ url_for('static',filename='image/' + item['type'] + '.png') }}"
-                        alt="{{ item['type'] }}">
-                    <br>
-                    {{ item['name'] }}
-                </a>
+    {% block content %}
+    <script>
+        var xp = "{{ url_for('explorer') }}" + "{{ p }}";
+    </script>
+    <center>
+        {% include 'includes/title.html' %}
+        <div class='container'>
+            <div class="addrbar">
+                <abbr title="Go to ~/Pylocalhost">
+                    <a href="{{ url_for('explorer') }}"><img src="{{ url_for('static',filename='image/home.png') }}"
+                            alt="Home" class="baricon"></a>
+                </abbr>
+                <abbr title="Back">
+                    <a href=".."><img src="{{ url_for('static',filename='image/back.png') }}" alt="Back"
+                            class="baricon"></a>
+                </abbr>
+                <abbr title="Open current folder with your system file browser">
+                    <a href="javascript:void(0);" onclick="sysopen(xp)">
+                        <img src="{{ url_for('static',filename='image/opencurrent.png') }}"
+                            alt="Open current folder with your system file browser" class="baricon">
+                    </a>
+                </abbr>
+                <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
             </div>
-            {% endfor %}
-            {% endfor %}
+            <hr>
+            <div class="table">
+                {% for category in ls %}
+                {% for item in ls[category] %}
+                <div class="col">
+                    <a href="{{ url_for('explorer',p = p + '/' + item['name']) }}"
+                        {% if not item['type'] in ['folder','drive'] %}target="blank" {% endif %}>
+                        <img src="{{ url_for('static',filename='image/' + item['type'] + '.png') }}"
+                            alt="{{ item['type'] }}">
+                        <br>
+                        {{ item['name'] }}
+                    </a>
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    {% include 'includes/info_icons.html' %}
-</center>
-<script src="{{ url_for('static',filename='script/explorer.js') }}"></script>
-{% endblock content %}
+        {% include 'includes/info_icons.html' %}
+    </center>
+    <script src="{{ url_for('static',filename='script/explorer.js') }}"></script>
+    {% endblock content %}
 </body>
 
 </html>

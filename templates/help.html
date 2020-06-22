@@ -9,8 +9,8 @@ A server for serving and rendering files in localhost.
 This is a web-based file explorer and its root path is your ~/Pylocalhost directory.
 <br>
 It is useful for serving HTML,Ajax,PHP and every thing that needs a webserver.
-<br>
-<br>
+<br><br>
+<hr>
 NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end
 of directory urls.
 <br>
@@ -18,11 +18,9 @@ For example:
 <br>
 http://localhost/folder1/folder2/ (Returns the GUI file manager) --> http://localhost/folder1/folder2/?api=true (Returns
 JSON)
-<br>
-<br>
-CLI Usage:
-<br>
-<br>
+<br><br>
+<hr>
+<h4>CLI Usage:</h4>
 <code>$ sudo pylh &lt;command&gt;</code>
 <br>
 <br>
@@ -36,19 +34,36 @@ Commands:
     <li>help --> Show help</li>
     <li>? --> Show help</li>
 </ul>
+<hr>
 <h4>Settings help</h4>
 <p><b>Allow requests from unknown hosts:</b>
     <br>
     Allow this option if you want to share your Pylocalhost over network
     <br>
-    If you disallow this option Pylocalhost will be available only from http://localhost or http://127.0.0.1 so other people cannot accesss to your pylocalhost and it is only accessible form your computer and localhost(or its ip : 127 ...)
+    If you disallow this option Pylocalhost will be available only from http://localhost or http://127.0.0.1 so other
+    people cannot accesss to your pylocalhost and it is only accessible form your computer and localhost(or its ip : 127
+    ...)
     <br>
     NOTE: This option is disallowed by default
     <br>
-    WARNING: If you allow this option your Pylocalhost will be shared over network be sure and aware about what are you doing.
+    WARNING: If you allow this option your Pylocalhost will be shared over network be sure and aware about what are you
+    doing.
     <br>
     NOTE: Settings part won't be accessible by other people even if you allow this option.
 </p>
+<hr>
+<h4>Toolbar help</h4>
+You can see a toolbar above the files and folders that has some sections:
+<br>
+1 - Home icon: Return you back to the home page of localhost which shows files in your ~/Pylocalhost .
+<br>
+2 - Back icon: Keeps you to the parent directory.
+<br>
+3 - Red folder icon: Opens the current directory using your systems default file browser/manager. If it fials nothing will happen :)
+<br>
+4 - Adress bar: Shows the path of current directory.
+<br><br>
+<hr>
 <p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our
-                    Github</a></i></b></u> if you have a problem.</p>
+                    Github</a></i></b></u> if you have a problem or question.</p>
 {% endblock content %}

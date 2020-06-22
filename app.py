@@ -53,9 +53,14 @@ def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)
     if os.path.isdir(path) or os.path.ismount(path):
-        ls = mwxpy.browse(path)
-        return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, title=os.path.basename(path), p=p)
+        if not request.args.get('sysopen') == 'true':
+            ls = mwxpy.browse(path)
+            return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p)
+        try:
+            os.system(f'xdg-open {home}/Pylocalhost/{p}')
+        except:
+            pass
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect('http://localhost/s/' + p)
     else:
-        return render_template('404.html',p=p)
+        return render_template('404.html',p=p),404
