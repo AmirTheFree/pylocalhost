@@ -4,6 +4,7 @@ from flask import Flask, abort, render_template, request, jsonify, redirect, jso
 import os
 import forms
 import mwxpy
+import subprocess
 
 
 home = mwxpy.rwjson('info.json')['home']
@@ -57,7 +58,9 @@ def explorer(p):
             ls = mwxpy.browse(path)
             return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p)
         try:
-            os.system(f'xdg-open {home}/Pylocalhost/{p}')
+            env = dict(os.environ)
+            env['DISPLAY'] = ":0"
+            subprocess.Popen(f'xdg-open {home}/Pylocalhost/{p}',env=env,shell=True)
         except:
             pass
     elif os.path.isfile(path) or os.path.islink(path):
