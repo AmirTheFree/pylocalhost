@@ -30,7 +30,7 @@ sys.stdout.write(colors['YELLOW'])
 print('MWX\nmwxgaf.ir\nTwitter: @mwxgaf\n')
 time.sleep(2)
 
-print('PyLocalhost\n')
+print('PyLocalhost\npylh.mwxg.ir\npylh@mwxg.ir')
 time.sleep(2)
 
 # Making atexit function
@@ -109,7 +109,7 @@ print('Python version 3 found! Starting installtion ...\n')
 # Checking PHP_FPM
 sys.stdout.write(colors['CYAN'])
 print('Checking PHP FPM ...')
-for p in ['7.4', '7.3', '7.2', '7.1', '7.0']:
+for p in ['7.0', '7.1', '7.2', '7.3', '7.4']:
     if os.popen('which php-fpm'+p).read().startswith('/'):
         info['php'] = p
 if not info['php']:
