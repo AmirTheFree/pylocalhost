@@ -55,10 +55,12 @@ def explorer(p):
     path = os.path.join(root, p)
     if os.path.isdir(path) or os.path.ismount(path):
         if request.args.get('srvdir') == 'true':
-            return redirect('http://localhost/s/' + p)
+            return redirect(f'http://{request.host}/s/' + p)
         if not request.args.get('sysopen') == 'true':
             ls = mwxpy.browse(path)
             return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p)
+        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            abort(403)
         try:
             env = dict(os.environ)
             env['DISPLAY'] = ":0"
@@ -67,6 +69,6 @@ def explorer(p):
         except:
             return 0,500
     elif os.path.isfile(path) or os.path.islink(path):
-        return redirect('http://localhost/s/' + p)
+        return redirect(f'http://{request.host}/s/' + p)
     else:
         return render_template('404.html',p=p),404
