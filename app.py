@@ -28,6 +28,8 @@ def about():
 
 @app.route('/help/', methods=['GET'])
 def guid():
+    if request.args.get('fa') == 'true':
+        return render_template('komak.html')
     return render_template('help.html')
 
 

@@ -1,68 +1,67 @@
 /* In the name of Allah */
 
-a:any-link{
+a:any-link {
     text-decoration: none;
     outline: none;
     color: yellow;
 }
 
-abbr{
+abbr {
     text-decoration: none;
 }
 
-img{
+img {
     transition: all .25s ease-out;
 }
 
-img:hover{
+img:hover {
     transform: scale(1.1);
 }
 
-div.grid-container-info{
+div.grid-container-info {
     display: grid;
     grid-template-columns: auto auto auto auto;
     position: absolute;
     left: 50%;
     transform: translateX(-158px);
-    margin-top:20px;
+    margin-top: 20px;
 }
 
-div.grid-item-info{
+div.grid-item-info {
     grid-row: 1;
 }
 
-img.info{
+img.info {
     max-width: 64px;
-    margin-left:10px;
+    margin-left: 10px;
     margin-right: 10px;
     transition: all .25s ease-out;
 }
 
-img.info:hover{
+img.info:hover {
     transform: rotateZ(360deg) scale(1.1);
 }
 
-
-body{
-    background-color: #0a0a29; 
+body {
+    background-color: #0a0a29;
     color: white;
     font-family: sans-serif;
     font-size: 18px;
 }
 
-span.p{
+span.p {
     color: yellow;
 }
 
-span.y{
+span.y {
     color: blue;
 }
 
-span.lh{
+span.lh {
     color: greenyellow;
 }
 
-.container{
+.container {
     border: 2px whitesmoke inset;
     border-radius: 20px;
     padding: 5px;
@@ -70,7 +69,7 @@ span.lh{
     max-width: 100%;
 }
 
-.addr{
+.addr {
     font-size: 20px;
     font-weight: bold;
     display: inline;
@@ -78,78 +77,78 @@ span.lh{
     top: -10px;
 }
 
-.addrbar{
+.addrbar {
     text-align: left;
     margin-left: 10px;
 }
 
-hr{
+hr {
     margin-top: 0;
 }
 
-h1{
+h1 {
     font-size: 35px;
 }
 
-.static{
+.static {
     color: goldenrod;
 }
 
-div img.baricon{
+div img.baricon {
     width: 40px;
     height: 40px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
-div.table{
+div.table {
     display: grid;
 }
 
-div.col{
+div.col {
     margin: 15px;
 }
 
-div.col img{
+div.col img {
     max-width: 75px;
     margin-bottom: 5px;
 }
 
-.a{
+.a {
     grid-column: 1;
 }
 
-.b{
+.b {
     grid-column: 2;
 }
 
-.c{
+.c {
     grid-column: 3;
 }
 
-.d{
+.d {
     grid-column: 4;
 }
 
-.e{
+.e {
     grid-column: 5;
 }
 
-.f{
+.f {
     grid-column: 6;
 }
 
-.g{
+.g {
     grid-column: 7;
 }
 
-h1.error{
+h1.error {
     font-size: 100px;
     color: #ff0066;
     margin-bottom: 25px;
 }
 
-p.notfound{
+p.notfound {
     color: red;
     font-size: 30px;
     font-weight: bold;
@@ -161,43 +160,54 @@ p.notfound{
     background-color: hsl(240, 61%, 20%);
 }
 
-div.nfnav img{
+div.nfnav img {
     max-width: 64px;
 }
 
-img.flag{
+img.flag {
     max-width: 30px;
 }
 
-p.about{
+p.about {
     font-size: 25px;
     color: yellow;
 }
 
-p.support{
+p.support {
     font-size: 20px;
     color: #ff0066;
 }
 
-.settings{
+.settings {
     width: 50%;
 }
 
-ul#host,ul#host li{
+ul#host, ul#host li {
     display: inline-block;
     list-style-type: none;
 }
 
-input[type=radio]{
+input[type=radio] {
     float: right;
     margin-right: 10px;
 }
 
-input[type=submit]{
+input[type=submit] {
     background-color: green;
     border: 0px outset;
     font-size: 20px;
     color: white;
     padding: 10px;
     border-radius: 7px;
+}
+
+@font-face{
+    font-family: 'yekan';
+    src: url('BYekan.woff') format('woff');
+}
+
+.farsi {
+    text-align: right;
+    direction: rtl;
+    font-family: 'yekan';
 }

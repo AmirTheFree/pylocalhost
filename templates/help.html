@@ -11,6 +11,12 @@ This is a web-based file explorer and its root path is your ~/Pylocalhost direct
 It is useful for serving HTML,Ajax,PHP and every thing that needs a webserver.
 <br><br>
 <hr>
+<a href="{{ url_for('guid') }}?fa=true">
+    <img src="{{ url_for('static',filename='image/iran.png') }}" alt="farsi" class="info">
+    Persian | فارسی
+</a>
+<br>
+<hr>
 NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end
 of directory urls.
 <br>
@@ -59,16 +65,18 @@ You can see a toolbar above the files and folders that has some sections:
 <br>
 2 - Back icon: Keeps you to the parent directory.
 <br>
-3 - Red folder icon: Opens the current directory using your systems default file browser/manager. If it fials nothing will happen :)
+3 - Red folder icon: Opens the current directory using your systems default file browser/manager. If it fials nothing
+will happen :)
 <br>
-4 - Red folder icon in green Nginx icon : Serves current directory using nginx so it will show you the index file or forbidden page.
+4 - Red folder icon in green Nginx icon : Serves current directory using nginx so it will show you the index file or
+forbidden page.
 <br>
 5 - Adress bar: Shows the path of current directory.
 <br><br>
 <hr>
 <b>More at: <a href="http://pylh.mwxg.ir/">pylh.mwxg.ir</a>
-<br>
-Our Email: <a href="mailto:pylh@mwxg.ir">pylh@mwxg.ir</a>
+    <br>
+    Our Email: <a href="mailto:pylh@mwxg.ir">pylh@mwxg.ir</a>
 </b>
 <p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our
                     Github</a></i></b></u> if you have a problem or question.</p>
