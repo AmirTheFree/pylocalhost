@@ -15,6 +15,8 @@
     {% block content %}
     <script>
         var xp = "{{ url_for('explorer') }}" + "{{ p }}";
+        var cp = "{{ cp }}"
+        var rp = "{{ rp }}"
     </script>
     <center>
         {% include 'includes/title.html' %}
@@ -36,7 +38,8 @@
                 </abbr>
                 <abbr title="Serve current folder using server">
                     <a href="{{ url_for('explorer',p = p) }}?srvdir=true" target="blank">
-                        <img src="{{ url_for('static',filename='image/server.png') }}" alt="Serve this folder using server" class="baricon">
+                        <img src="{{ url_for('static',filename='image/server.png') }}"
+                            alt="Serve this folder using server" class="baricon">
                     </a>
                 </abbr>
                 <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
@@ -60,6 +63,25 @@
         </div>
         {% include 'includes/info_icons.html' %}
     </center>
+    <div id="menu">
+        <div id="titr"></div>
+        <hr>
+        <a id="dl" target="blank">
+            <div>Download</div>
+        </a>
+        <hr>
+        <a id="oos" href="javascript:void(0);">
+            <div>Open with OS</div>
+        </a>
+        <hr>
+        <a id="del">
+            <div>Delete</div>
+        </a>
+        <hr>
+        <a id="run" target="blank">
+            <div>Run script</div>
+        </a>
+    </div>
     <script src="{{ url_for('static',filename='script/explorer.js') }}"></script>
     {% endblock content %}
 </body>

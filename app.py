@@ -8,6 +8,7 @@ import subprocess
 
 
 home = mwxpy.rwjson('info.json')['home']
+python = mwxpy.rwjson('info.json')['python']
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = mwxpy.rwjson('info.json')['secret']
@@ -55,21 +56,49 @@ def settings():
 def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)
-    if os.path.isdir(path) or os.path.ismount(path):
-        if request.args.get('srvdir') == 'true':
-            return redirect(f'http://{request.host}/s/' + p)
-        if not request.args.get('sysopen') == 'true':
-            ls = mwxpy.browse(path)
-            return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p)
+    if request.args.get('dl') == 'true':
+        return redirect(f'http://{request.host}/d/' + p)
+    if request.args.get('run') == 'true':
+        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            abort(403)
+        if p.lower().endswith('.py'):
+            try:
+                return "Python script ran successsfully here is the output:<br><br>" + os.popen(f'{python} {home}/Pylocalhost/{p}').read(),200
+            except:
+                return "Could not run script successfully!",500
+        elif p.lower().endswith('.js'):
+            if not os.popen('which node').read().startswith('/'):
+                return 'You don\'t have NodeJS installed on your system!'
+            try:
+                return "Javascript ran successfully here is the output:<br><br>" + os.popen(f'node {home}/Pylocalhost/{p}').read(),200
+            except:
+                return "Could not run script successfully!",500
+        else:
+            return 'PyLocalHost is only able to run Javascript or Python scripts',400
+        
+    if request.args.get('sysopen') == 'true':
         if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
             abort(403)
         try:
             env = dict(os.environ)
             env['DISPLAY'] = ":0"
             subprocess.Popen(f'xdg-open {home}/Pylocalhost/{p}',env=env,shell=True)
-            return 1,200
+            return 'Requesting form system was successful',200
         except:
-            return 0,500
+            return 'Requesting form system was not successful',500
+    if request.args.get('rm') == 'true':
+        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            abort(403)
+        try:
+            os.popen(f'rm -rf {home}/Pylocalhost/{p}')
+            return redirect(f'http://{request.host}/' + p + '/../')
+        except:
+            return 'Requesting form system was not successful',500
+    if os.path.isdir(path) or os.path.ismount(path):
+        if request.args.get('srvdir') == 'true':
+            return redirect(f'http://{request.host}/s/' + p)
+        ls = mwxpy.browse(path)
+        return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p, cp= f'http://{request.host}/{p}'[0:-1], rp = f'http://{request.host}/' )
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect(f'http://{request.host}/s/' + p)
     else:

@@ -201,7 +201,7 @@ input[type=submit] {
     border-radius: 7px;
 }
 
-@font-face{
+@font-face {
     font-family: 'yekan';
     src: url('BYekan.woff') format('woff');
 }
@@ -210,4 +210,22 @@ input[type=submit] {
     text-align: right;
     direction: rtl;
     font-family: 'yekan';
+}
+
+.menu {
+    display: inline;
+    border: 2px outset whitesmoke;
+    border-radius: 7px;
+    padding: 3px;
+    background-color:brown;
+    position: absolute;
+}
+
+.menu a:hover {
+    color: rebeccapurple;
+}
+
+#titr {
+    font-weight: bold;
+    color: black;
 }
