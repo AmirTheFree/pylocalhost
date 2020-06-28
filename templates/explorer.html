@@ -34,6 +34,11 @@
                             alt="Open current folder with your system file browser" class="baricon">
                     </a>
                 </abbr>
+                <abbr title="Serve current folder using server">
+                    <a href="{{ url_for('explorer',p = p) }}?srvdir=true" target="blank">
+                        <img src="{{ url_for('static',filename='image/server.png') }}" alt="Serve this folder using server" class="baricon">
+                    </a>
+                </abbr>
                 <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
             </div>
             <hr>

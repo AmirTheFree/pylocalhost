@@ -54,6 +54,8 @@ def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)
     if os.path.isdir(path) or os.path.ismount(path):
+        if request.args.get('srvdir') == 'true':
+            return redirect('http://localhost/s/' + p)
         if not request.args.get('sysopen') == 'true':
             ls = mwxpy.browse(path)
             return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p)
@@ -61,8 +63,9 @@ def explorer(p):
             env = dict(os.environ)
             env['DISPLAY'] = ":0"
             subprocess.Popen(f'xdg-open {home}/Pylocalhost/{p}',env=env,shell=True)
+            return 1,200
         except:
-            pass
+            return 0,500
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect('http://localhost/s/' + p)
     else:
