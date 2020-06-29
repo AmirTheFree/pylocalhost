@@ -18,9 +18,16 @@ function rightclick(element, event) {
     document.getElementById('del').setAttribute('href',cp + element.firstElementChild.getAttribute('href') + '?rm=true');
     document.getElementById('run').setAttribute('href',cp + element.firstElementChild.getAttribute('href') + '?run=true');
     document.getElementById('dl').setAttribute('href',rp + 'd' + element.firstElementChild.getAttribute('href'));
-    document.getElementById('oos').addEventListener('click',function (e){
+    function systemredirector(e){
+        this.setAttribute('disabled','disabled');       
         sysopen(cp + element.firstElementChild.getAttribute('href'));
-    });
+    };
+    var old_oos = document.getElementById('oos');
+    var new_oos = old_oos.cloneNode(true);
+    old_oos.parentNode.replaceChild(new_oos,old_oos);
+    old_oos.remove();
+    document.getElementById('oos').addEventListener('click',systemredirector);
+    document.getElementById('oos').removeAttribute('disabled');
     menu.setAttribute('class','menu')
     menu.style = 'top: ' + event.pageY + 'px;left: ' + event.pageX + 'px;';
 };

@@ -63,18 +63,18 @@ def explorer(p):
             abort(403)
         if p.lower().endswith('.py'):
             try:
-                return "Python script ran successsfully here is the output:<br><br>" + os.popen(f'{python} {home}/Pylocalhost/{p}').read(),200
+                return '<span style="color:green;">Python script ran successsfully here is the output:</span><br><br>' + os.popen(f'{python} {home}/Pylocalhost/{p}').read(),200
             except:
-                return "Could not run script successfully!",500
+                return '<span style="color:red;">Could not run script successfully!</span>',500
         elif p.lower().endswith('.js'):
             if not os.popen('which node').read().startswith('/'):
-                return 'You don\'t have NodeJS installed on your system!'
+                return '<span style="color:red;">You don\'t have NodeJS installed on your system!</span>'
             try:
-                return "Javascript ran successfully here is the output:<br><br>" + os.popen(f'node {home}/Pylocalhost/{p}').read(),200
+                return '<span style="color:green;">Javascript ran successfully here is the output:</span><br><br>' + os.popen(f'node {home}/Pylocalhost/{p}').read(),200
             except:
-                return "Could not run script successfully!",500
+                return '<span style="color:red;">Could not run script successfully!</span>',500
         else:
-            return 'PyLocalHost is only able to run Javascript or Python scripts',400
+            return '<span style="color: red;">PyLocalHost is only able to run Javascript or Python scripts</span>',400
         
     if request.args.get('sysopen') == 'true':
         if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):

@@ -221,7 +221,16 @@ input[type=submit] {
     position: absolute;
 }
 
-.menu a:hover {
+.menu #oos {
+    background-color: inherit;
+    border: none;
+    font-family: inherit;
+    padding: 0;
+    color: yellow;
+    cursor: pointer;
+}
+
+.menu *:hover {
     color: rebeccapurple;
 }
 
