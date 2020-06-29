@@ -54,7 +54,9 @@ def settings():
 def kill():
     if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
         abort(403)
-    os.popen('pkill jupyter')
+    env = dict(os.environ)
+    env['DISPLAY'] = ":0"
+    subprocess.Popen('pkill jupyter && killall jupyter',env=env,shell=True)
     return 'Done!',200
 
 @app.route('/', defaults={'p': ''})
