@@ -9,6 +9,7 @@ import subprocess
 
 home = mwxpy.rwjson('info.json')['home']
 python = mwxpy.rwjson('info.json')['python']
+notebooks = []
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = mwxpy.rwjson('info.json')['secret']
@@ -54,9 +55,9 @@ def settings():
 def kill():
     if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
         abort(403)
-    env = dict(os.environ)
-    env['DISPLAY'] = ":0"
-    subprocess.Popen('pkill jupyter && killall jupyter',env=env,shell=True)
+    for n in notebooks:
+        os.popen(f'pkill -P {n.pid}')
+        n.kill()
     return 'Done!',200
 
 @app.route('/', defaults={'p': ''})
@@ -109,7 +110,8 @@ def explorer(p):
             try:
                 env = dict(os.environ)
                 env['DISPLAY'] = ":0"
-                subprocess.Popen(f'cd {path} && /etc/pylocalhost/.venv/bin/jupyter notebook',env=env,shell=True)
+                x = subprocess.Popen(f'cd {path} && /etc/pylocalhost/.venv/bin/jupyter notebook',env=env,shell=True)
+                notebooks.append(x)
                 return 'Requesting from system was successfull',200
             except:
                 return 'Requesting from system was not successfull!',500
