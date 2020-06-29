@@ -6,6 +6,18 @@ document.addEventListener('click',function (e){
     document.getElementById('menu').style = 'display: none;';
 },false);
 
+function startNoteBook(path) {
+    var ajax = new XMLHttpRequest();
+    ajax.open('GET',path + '?notebook=true',true);
+    ajax.send();
+};
+
+function stopNoteBook() {
+    var ajax = new XMLHttpRequest();
+    ajax.open('GET',rp + 'stopjupyter/',true);
+    ajax.send();
+}
+
 function sysopen(path) {
     var ajax = new XMLHttpRequest();
     ajax.open('GET', path + '?sysopen=true', true);

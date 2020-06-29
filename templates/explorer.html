@@ -41,6 +41,19 @@
                             alt="Serve this folder using server" class="baricon">
                     </a>
                 </abbr>
+
+                <abbr title="Start a Python Jyputer notebook for current folder">
+                    <a href="javascript:void(0);" onclick="startNoteBook(xp)">
+                        <img src="{{ url_for('static',filename='image/jupyter.png') }}"
+                            alt="Start a Python Jyputer notebook for current folder" class="baricon">
+                    </a>
+                </abbr>
+                <abbr title="Stop all working Jupyter notebooks on this system">
+                    <a href="javascript:void(0);" onclick="stopNoteBook()">
+                        <img src="{{ url_for('static',filename='image/kill.png') }}"
+                            alt="Stop all working Jupyter notebooks on this system" class="baricon">
+                    </a>
+                </abbr>
                 <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
             </div>
             <hr>

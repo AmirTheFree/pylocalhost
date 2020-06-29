@@ -50,6 +50,12 @@ def settings():
     data = {'host':'1' if inf['host'] else '0'}
     return render_template('settings.html',form=form,data = data)
 
+@app.route('/stopjupyter/', methods =['GET'])
+def kill():
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+        abort(403)
+    os.popen('pkill jupyter')
+    return 'Done!',200
 
 @app.route('/', defaults={'p': ''})
 @app.route('/<path:p>/', methods=['GET'])
@@ -82,19 +88,27 @@ def explorer(p):
         try:
             env = dict(os.environ)
             env['DISPLAY'] = ":0"
-            subprocess.Popen(f'xdg-open {home}/Pylocalhost/{p}',env=env,shell=True)
-            return 'Requesting form system was successful',200
+            subprocess.Popen(f'xdg-open {path}',env=env,shell=True)
+            return 'Requesting from system was successful',200
         except:
-            return 'Requesting form system was not successful',500
+            return 'Requesting from system was not successful',500
     if request.args.get('rm') == 'true':
         if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
             abort(403)
         try:
-            os.popen(f'rm -rf {home}/Pylocalhost/{p}')
+            os.popen(f'rm -rf {path}')
             return redirect(f'http://{request.host}/' + p + '/../')
         except:
-            return 'Requesting form system was not successful',500
+            return 'Requesting from system was not successful',500
     if os.path.isdir(path) or os.path.ismount(path):
+        if request.args.get('notebook') == 'true':
+            if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+                abort(403)
+            try:
+                os.system(f'cd {path} && /etc/pylocalhost/.venv/bin/jupyter notebook')
+                return 'Requesting from system was successfull',200
+            except:
+                return 'Requesting from system was not successfull!',500
         if request.args.get('srvdir') == 'true':
             return redirect(f'http://{request.host}/s/' + p)
         ls = mwxpy.browse(path)

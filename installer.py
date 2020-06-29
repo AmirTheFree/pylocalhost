@@ -205,7 +205,7 @@ shutil.rmtree('/etc/pylocalhost/temp')
 if not os.path.isfile('/etc/pylocalhost/app.py'):
     unknown_error('\nCloud not clone git repository successfully!')
         
-print('Installing dependencies ...')
+print('Installing dependencies ... Please wait it may take a while ...')
 
 try:
     req_install_porcess = os.popen(
