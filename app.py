@@ -56,7 +56,9 @@ def kill():
     if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
         abort(403)
     for n in notebooks:
-        os.popen(f'pkill -P {n.pid}')
+        env = dict(os.environ)
+        env['DISPLAY'] = ":0"
+        subprocess.Popen(f'pkill -P {n.pid}',env=env,shell=True)
         n.kill()
     return 'Done!',200
 
