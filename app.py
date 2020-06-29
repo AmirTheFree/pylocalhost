@@ -52,7 +52,7 @@ def settings():
 
 
 @app.route('/', defaults={'p': ''})
-@app.route('/<path:p>/', methods=['GET'])
+@app.route('/<path:p>', methods=['GET'])
 def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)
