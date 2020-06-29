@@ -20,7 +20,7 @@ function rightclick(element, event) {
     document.getElementById('dl').setAttribute('href',rp + 'd' + element.firstElementChild.getAttribute('href').slice(0,-1));
     function systemredirector(e){
         this.setAttribute('disabled','disabled');       
-        sysopen(cp + element.firstElementChild.getAttribute('href'));
+        sysopen(rp + element.firstElementChild.getAttribute('href'));
     };
     var old_oos = document.getElementById('oos');
     var new_oos = old_oos.cloneNode(true);
