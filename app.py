@@ -105,7 +105,9 @@ def explorer(p):
             if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
                 abort(403)
             try:
-                os.system(f'cd {path} && /etc/pylocalhost/.venv/bin/jupyter notebook')
+                env = dict(os.environ)
+                env['DISPLAY'] = ":0"
+                subprocess.Popen(f'cd {path} && /etc/pylocalhost/.venv/bin/jupyter notebook',env=env,shell=True)
                 return 'Requesting from system was successfull',200
             except:
                 return 'Requesting from system was not successfull!',500
