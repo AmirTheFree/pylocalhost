@@ -98,7 +98,7 @@ def explorer(p):
         if request.args.get('srvdir') == 'true':
             return redirect(f'http://{request.host}/s/' + p)
         ls = mwxpy.browse(path)
-        return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p, cp= f'http://{request.host}/{p}'[0:-1], rp = f'http://{request.host}/' )
+        return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p, rp = f'http://{request.host}/' )
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect(f'http://{request.host}/s/' + p)
     else:
