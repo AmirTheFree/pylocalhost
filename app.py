@@ -1,11 +1,10 @@
 # In the name of Allah
 
-from flask import Flask, abort, render_template, request, jsonify, redirect, json
+from flask import Flask, abort, render_template, request, jsonify, redirect
 import os
 import forms
 import mwxpy
 import subprocess
-
 
 home = mwxpy.rwjson('info.json')['home']
 python = mwxpy.rwjson('info.json')['python']
@@ -59,7 +58,6 @@ def kill():
         env = dict(os.environ)
         env['DISPLAY'] = ":0"
         subprocess.Popen(f'pkill -P {n.pid}',env=env,shell=True)
-        n.kill()
     return 'Done!',200
 
 @app.route('/', defaults={'p': ''})
