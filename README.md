@@ -33,7 +33,7 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 ### Installation
 
-#### NOTE: This version is unstable --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.0) for the latest stable version (1.0).
+#### NOTE: This version is unstable --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.1) for the latest stable version (1.1).
 
 Download `installer.py` file which is in the repository.
 
