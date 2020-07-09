@@ -238,3 +238,9 @@ input[type=submit] {
     font-weight: bold;
     color: black;
 }
+
+.version{
+    position: absolute;
+    left: 50%;
+    transform: translateY(110px) translateX(-100px);
+}
