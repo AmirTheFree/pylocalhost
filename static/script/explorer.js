@@ -44,7 +44,7 @@ function rightclick(element, event) {
     menu.style = 'top: ' + event.pageY + 'px;left: ' + event.pageX + 'px;';
 };
 
-var cls = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+var cls = ['a', 'b', 'c', 'd', 'e', 'f'];
 var index = 0;
 
 var items = document.getElementsByClassName('col');
@@ -55,5 +55,5 @@ for (let i = 0; i < items.length; i++) {
         rightclick(items[i], e);
         e.preventDefault()
     },false);
-    (index == 6) ? index = 0 : index += 1;
+    (index == 5) ? index = 0 : index += 1;
 };

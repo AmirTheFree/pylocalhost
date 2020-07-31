@@ -107,6 +107,8 @@ div.table {
 
 div.col {
     margin: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 div.col img {
