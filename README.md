@@ -35,17 +35,21 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 #### NOTE: This version is unstable --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.1) for the latest stable version (1.1).
 
-Download `installer.py` file which is in the repository.
+Download `preinstaller.py` file which is in the repository.
 
 You can get it from terminal using wget:
 
-`$ wget --no-dns-cache https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/installer.py`
+`$ wget --no-dns-cache https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/preinstaller.py`
 
-After that just run the file with **python 3** under sudo:
+After that just run the file with **python 3**:
 
-`$ sudo python installer.py`
+`$ python3 installer.py`
 
-In some OSs may be you must type `python3` instead of `python`
+In some OSs may be you must type `python` instead of `python3`
+
+Then run the `installer.py` file(it will be created once you ran `preinstaller.py`) with **python 3** under **sudo**:
+
+`$ sudo python3 installer.py`
 
 It will show you details. If installation was unsuccessful please submit an issue including details and your system info.
 

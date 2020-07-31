@@ -53,6 +53,19 @@ def end():
 
 atexit.register(end)
 
+# Getting user info
+
+try:
+    preinfofile = open('pylhinfo.json')
+except FileNotFoundError:
+    sys.stdout.write(colors['RED'])
+    print('Could not find pylhinfo.json file!\nPlease read the installation guid from this link:\nhttps://pylh.mwxg.ir/install/')
+    sys.exit(404)
+preinfo = json.load(preinfofile)
+info['home'] = preinfo['home']
+info['username'] = preinfo['user']
+preinfofile.close()
+
 # Asking user for accepting the license
 sys.stdout.write(colors['CYAN'])
 print('This software is licensed under MPL-2.0\n(Mozilla public license - version 2.0)\n')
@@ -242,9 +255,6 @@ if not os.path.isfile('/etc/pylocalhost/.venv/bin/gunicorn'):
 # Create and write Nginx and Gunicorn config file
 sys.stdout.write(colors['CYAN'])
 print('Configuring your system ...')
-
-info['home'] = os.popen('echo $HOME').read()[:-1]
-info['username'] = info['home'].split('/')[2]
 
 os.chdir(info['home'])
 os.makedirs('Pylocalhost', exist_ok=True)
