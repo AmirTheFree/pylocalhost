@@ -20,7 +20,7 @@ colors = {
 }
 
 info = {'python': None, 'license_accepted': False,
-        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':False,'secret':None}
+        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':False,'secret':None,'jupyter_installed':False}
 
 sys.stdout.write(colors['MAGENTA'])
 print('In the name of Allah\n')
@@ -96,9 +96,12 @@ sys.stdout.write(colors['GREEN'])
 print('Checking completed successfully!\n')
 
 # Checking and finding python 3
-for p in ['python3 --version', 'python --version']:
-    if os.popen(p).read()[7] == '3':
-        info['python'] = p.split()[0]
+for p in ['python --version','python3 --version']:
+    try:
+        if os.popen(p).read()[7] == '3':
+                info['python'] = p.split()[0]
+    except:
+        pass
 if not info['python']:
     sys.stdout.write(colors['RED'])
     print('Could not find python version 3 in your system!')
@@ -214,6 +217,25 @@ try:
 except BrokenPipeError:
     pass
 
+while not info['jupyter_installed']:
+    sys.stdout.write(colors['YELLOW'])
+    jupyter_question = input('Do you want to install Jupyter for PyLocalHost (y/n)?')
+    if jupyter_question.lower() == 'y':
+        sys.stdout.write(colors['CYAN'])
+        print('Installing Jupyter please wait it may take a while ...')
+        try:
+            jupyter_install_process = os.popen('sudo -H /etc/pylocalhost/.venv/bin/pip install -r requirements.txt')
+            os.waitpid(req_install_porcess._proc.pid,0)
+        except BrokenPipeError:
+            pass
+        info['jupyter_installed'] = True
+        sys.stdout.write(colors['GREEN'])
+        print('Successfully installed Jupyter')
+    else:
+        sys.stdout.write(colors['GREEN'])
+        print('No problem! Jupyter wont be installed.')
+        break       
+
 if not os.path.isfile('/etc/pylocalhost/.venv/bin/gunicorn'):
     unknown_error('\nCould not install dependencies!')
 
@@ -231,7 +253,7 @@ os.popen('sudo chmod ug=rwx,o=rx Pylocalhost/')
 os.chdir('/etc/pylocalhost')
 
 pylocalhost_file = open('/etc/nginx/sites-available/pylocalhost', 'w')
-pylocalhost_file.write('server {\n    listen 80 default_server;\n    listen [::]:80;\n    root %s/Pylocalhost;\n    server_name localhost;\n    location /static {\n        alias /etc/pylocalhost/static;\n        expires 365d;\n    }\n    location /s {\n        alias %s/Pylocalhost;\n\n        location ~ \.php$ {\n            fastcgi_pass unix:/run/php/php%s-fpm.sock;\n            include fastcgi_params;\n            fastcgi_param SCRIPT_FILENAME $request_filename;\n        }\n    }\n    location /d {\n        alias %s/Pylocalhost;\n        types {} default_type "application/octet-stream";\n    }\n    location / {\n        try_files $uri @wsgi;\n    }\n    location @wsgi {\n        proxy_pass http://unix:/tmp/gunicorn.sock;\n        include proxy_params;\n    }\n}' % (info['home'], info['home'], info['php'] , info['home']))
+pylocalhost_file.write('server {\n    listen 80 default_server;\n    listen [::]:80;\n    root %s/Pylocalhost;\n    server_name localhost;\n    location /static {\n        alias /etc/pylocalhost/static;\n        expires 365d;\n    }\n    location /s {\n        index index.html index.php index.htm;\n        alias %s/Pylocalhost;\n\n        location ~ \.php$ {\n            fastcgi_pass unix:/run/php/php%s-fpm.sock;\n            include fastcgi_params;\n            fastcgi_param SCRIPT_FILENAME $request_filename;\n        }\n    }\n    location /d {\n        alias %s/Pylocalhost;\n        types {} default_type "application/octet-stream";\n    }\n    location / {\n        try_files $uri @wsgi;\n    }\n    location @wsgi {\n        proxy_pass http://unix:/tmp/gunicorn.sock;\n        include proxy_params;\n    }\n}' % (info['home'], info['home'], info['php'] , info['home']))
 pylocalhost_file.close()
 
 gunicorn_file = open('/etc/systemd/system/gunicorn.service', 'w')
