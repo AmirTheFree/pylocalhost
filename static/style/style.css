@@ -182,7 +182,7 @@ p.support {
     width: 50%;
 }
 
-ul#host, ul#host li {
+ul#host, ul#host li ,ul#show_hidden_files , ul#show_hidden_files li {
     display: inline-block;
     list-style-type: none;
 }

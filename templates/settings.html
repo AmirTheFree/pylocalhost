@@ -11,6 +11,8 @@
             {{ form.hidden_tag() }}
             Allow requests from unknown hosts : {{ form.host }}
             <br>
+            Show hidden files : {{ form.show_hidden_files }}
+            <br>
             <input type="submit" value="Save">
         </form>
         <br>
@@ -19,6 +21,7 @@
     {% include 'includes/info_icons.html' %}
 </center>
 <script>
-    ("{{ data['host'] }}" == '1')? document.getElementById('host-0').setAttribute('checked','checked') : document.getElementById('host-1').setAttribute('checked','checked'); 
+    ("{{ data['host'] }}" == '1')? document.getElementById('host-0').setAttribute('checked','checked') : document.getElementById('host-1').setAttribute('checked','checked');
+    ("{{ data['show_hidden_files'] }}" == '1')? document.getElementById('show_hidden_files-0').setAttribute('checked','checked') : document.getElementById('show_hidden_files-1').setAttribute('checked','checked');  
 </script>
 {% endblock content %}

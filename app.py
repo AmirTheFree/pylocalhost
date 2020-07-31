@@ -44,10 +44,11 @@ def settings():
         if not form.validate_on_submit():
             abort(400)
         inf['host'] = True if form.host.data == '1' else False
+        inf['show_hidden_files'] = True if form.show_hidden_files.data == '1' else False
         mwxpy.rwjson('info.json',inf)
         
     form = forms.SettingsForm()
-    data = {'host':'1' if inf['host'] else '0'}
+    data = {'host':'1' if inf['host'] else '0','show_hidden_files': '1' if inf['show_hidden_files'] else '0'}
     return render_template('settings.html',form=form,data = data)
 
 @app.route('/stopjupyter/', methods =['GET'])
@@ -65,6 +66,7 @@ def kill():
 def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)
+    show_hidden_files = mwxpy.rwjson('info.json')['show_hidden_files']
     if request.args.get('dl') == 'true':
         return redirect(f'http://{request.host}/d/' + p)
     if request.args.get('run') == 'true':
@@ -117,7 +119,7 @@ def explorer(p):
                 return 'Requesting from system was not successfull!',500
         if request.args.get('srvdir') == 'true':
             return redirect(f'http://{request.host}/s/' + p)
-        ls = mwxpy.browse(path)
+        ls = mwxpy.browse(path,show_hidden_files)
         return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p, rp = f'http://{request.host}/' )
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect(f'http://{request.host}/s/' + p)
