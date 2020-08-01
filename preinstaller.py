@@ -12,7 +12,7 @@ pylhinfo['home'] = os.getenv('HOME')
 fp = open('pylhinfo.json','w')
 json.dump(pylhinfo,fp)
 
-installer_download = os.popen('wget https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/installer.py')
+installer_download = os.popen('wget --no-dns-cache https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/installer.py')
 os.waitpid(installer_download._proc.pid,0)
 
 if not os.path.isfile('installer.py'):
