@@ -23,11 +23,7 @@ If you don't have them try installing theme
 
 If you want Pylocalhost to serve and render PHP files you will also need `php-fpm` Version 7.0 or higher(Exmaple for Ubuntu):
 
-`$ sudo add-apt-repository ppa:ondrej/php`
-
-`$ sudo apt update`
-
-`$ sudo apt install php7.4 php7.4-fpm php7.4-mysql php7.4-imagick php7.4-cli php7.4-xmlrpc php7.4-gd php7.4-tidy php7.4-recode`
+`$ sudo apt install php7.4 php7.4-fpm`
 
 `$ sudo systemctl enable --now php7.4-fpm`
 
