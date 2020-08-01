@@ -53,6 +53,14 @@ def end():
 
 atexit.register(end)
 
+def remove_or_go(path):
+    try:
+        os.remove(path)
+    except FileNotFoundError:
+        pass
+    except Exception as e:
+        unknown_error(e)
+
 # Getting user info
 
 try:
@@ -65,6 +73,9 @@ preinfo = json.load(preinfofile)
 info['home'] = preinfo['home']
 info['username'] = preinfo['user']
 preinfofile.close()
+
+remove_or_go('pylhinfo.json')
+remove_or_go('preinstaller.py')
 
 # Asking user for accepting the license
 sys.stdout.write(colors['CYAN'])
@@ -272,16 +283,6 @@ gunicorn_file.close()
 
 shutil.move('/etc/nginx/nginx.conf', '/etc/nginx/nginx.conf.default')
 shutil.copy('/etc/pylocalhost/nginx.conf', '/etc/nginx/nginx.conf')
-
-
-def remove_or_go(path):
-    try:
-        os.remove(path)
-    except FileNotFoundError:
-        pass
-    except Exception as e:
-        unknown_error(e)
-
 
 remove_or_go('/etc/nginx/sites-enabled/default')
 remove_or_go('/etc/nginx/sites-enabled/pylocalhost')
