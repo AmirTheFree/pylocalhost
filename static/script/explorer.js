@@ -38,6 +38,7 @@ function rightclick(element, event) {
     document.getElementById('del').setAttribute('href',rp + element.firstElementChild.getAttribute('href') + '?rm=true');
     document.getElementById('run').setAttribute('href',rp + element.firstElementChild.getAttribute('href') + '?run=true');
     document.getElementById('dl').setAttribute('href',rp + '/d' + element.firstElementChild.getAttribute('href').slice(0,-1));
+    document.getElementById('src').setAttribute('href',rp + '/t' + element.firstElementChild.getAttribute('href'))
     function systemredirector(e){
         this.setAttribute('disabled','disabled');       
         sysopen(rp + element.firstElementChild.getAttribute('href'));

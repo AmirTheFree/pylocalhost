@@ -244,5 +244,6 @@ input[type=submit] {
 .version{
     position: absolute;
     left: 50%;
-    transform: translateY(110px) translateX(-100px);
+    transform: translateY(110px) translateX(-150px); /* -100 for stable version*/
+    line-height: 2em;
 }
