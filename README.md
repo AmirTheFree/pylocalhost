@@ -1,4 +1,4 @@
-# PyLocalhost
+# PyLocalHost
 ## A server for serving and rendering files in localhost + some interesting options
 
 **_In the name of Allah_**
@@ -29,7 +29,7 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 ### Installation
 
-#### NOTE: This version is unstable --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.1) for the latest stable version (1.1).
+#### NOTE: The version below is unstable(Beta) --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.2) for the latest stable version (1.2).
 
 Download `preinstaller.py` file which is in the repository.
 
