@@ -39,7 +39,7 @@ You can get it from terminal using wget:
 
 After that just run the file with **python 3**:
 
-`$ python3 installer.py`
+`$ python3 preinstaller.py`
 
 In some OSs may be you must type `python` instead of `python3`
 
