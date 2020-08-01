@@ -248,7 +248,7 @@ while not info['jupyter_installed']:
         sys.stdout.write(colors['CYAN'])
         print('Installing Jupyter please wait it may take a while ...')
         try:
-            jupyter_install_process = os.popen('sudo -H /etc/pylocalhost/.venv/bin/pip install -r requirements.txt')
+            jupyter_install_process = os.popen('sudo -H /etc/pylocalhost/.venv/bin/pip install jupyter')
             os.waitpid(jupyter_install_process._proc.pid,0)
         except BrokenPipeError:
             pass
