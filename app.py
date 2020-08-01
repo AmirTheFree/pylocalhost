@@ -58,7 +58,7 @@ def kill():
     for n in notebooks:
         env = dict(os.environ)
         env['DISPLAY'] = ":0"
-        subprocess.Popen(f'pkill -P {n.pid}',env=env,shell=True)
+        subprocess.Popen(f'pkill -P {n.pid} && kill -9 {n.pid} && killall jupyter',env=env,shell=True)
     return 'Done!',200
 
 @app.route('/', defaults={'p': ''})
