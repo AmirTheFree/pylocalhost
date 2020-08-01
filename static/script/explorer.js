@@ -24,6 +24,14 @@ function sysopen(path) {
     ajax.send();
 };
 
+document.getElementById('del').addEventListener('click',function (e){
+    result = confirm('Are you sure?');
+    if (!result){
+        e.preventDefault();
+        return false;
+    };
+});
+
 function rightclick(element, event) {
     var menu = document.getElementById('menu');
     document.getElementById('titr').innerText = element.firstElementChild.innerText;
