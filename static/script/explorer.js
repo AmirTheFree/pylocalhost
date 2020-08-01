@@ -29,7 +29,7 @@ function rightclick(element, event) {
     document.getElementById('titr').innerText = element.firstElementChild.innerText;
     document.getElementById('del').setAttribute('href',rp + element.firstElementChild.getAttribute('href') + '?rm=true');
     document.getElementById('run').setAttribute('href',rp + element.firstElementChild.getAttribute('href') + '?run=true');
-    document.getElementById('dl').setAttribute('href',rp + 'd' + element.firstElementChild.getAttribute('href').slice(0,-1));
+    document.getElementById('dl').setAttribute('href',rp + '/d' + element.firstElementChild.getAttribute('href').slice(0,-1));
     function systemredirector(e){
         this.setAttribute('disabled','disabled');       
         sysopen(rp + element.firstElementChild.getAttribute('href'));
