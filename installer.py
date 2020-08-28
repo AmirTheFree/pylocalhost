@@ -39,7 +39,7 @@ time.sleep(2)
 def end():
     if not info['installtion_complete']:
         sys.stdout.write(colors['YELLOW'])
-        print('\nInstaller exited from installtion process and resault was not successfull!\nIf you have an issue please submit it at Github repository of project:\nhttps://github.com/mwxgaf/pylocalhost\n')
+        print('\nInstaller exited from installation process and result was not successfull!\nIf you have an issue please submit it at Github repository of project:\nhttps://github.com/mwxgaf/pylocalhost\n')
     else:
         sys.stdout.write(colors['GREEN'])
         print('\nSaving your system info ...')
@@ -48,10 +48,22 @@ def end():
         json.dump(info, info_json_file)
         info_json_file.close()
         shutil.chown('/etc/pylocalhost/info.json',info['username'])
-        print('\nInstalltion completed successfully\nThank you for using Pylocalhost :)')
+        print('\nInstallation completed successfully\nThank you for using Pylocalhost :)')
 
 
 atexit.register(end)
+
+# Defining some required functions
+
+def unknown_error(e):
+    sys.stdout.write(colors['RED'])
+    print('Unexpected error: {}\n'.format(e))
+    sys.exit(500)
+
+def permission_error():
+    sys.stdout.write(colors['RED'])
+    print('Not enough permissions! run file with sudo\n')
+    sys.exit(403)
 
 def remove_or_go(path):
     try:
@@ -100,7 +112,7 @@ if os.name == 'nt':
     print('Microsoft Windows OS is not supported yet!')
     sys.exit(400)
 sys.stdout.write(colors['GREEN'])
-print('Operating system supported! Starting dependencies installtion check ...\n')
+print('Operating system supported! Starting dependencies installation check ...\n')
 
 # Check if dependencies are installed or not
 
@@ -108,10 +120,10 @@ print('Operating system supported! Starting dependencies installtion check ...\n
 def check_installtion(package):
     if not os.popen('which {}'.format(package)).read().startswith('/'):
         sys.stdout.write(colors['RED'])
-        print('Clound not detect {} installtion!'.format(package))
+        print('Clound not detect {} installation!'.format(package))
         sys.exit(404)
     sys.stdout.write(colors['CYAN'])
-    print('{} installtion found! ...'.format(package))
+    print('{} installation found! ...'.format(package))
 
 
 for p in ['nginx', 'git']:
@@ -160,19 +172,6 @@ check_installtion('virtualenv')
 
 # Initializing venv
 
-
-def unknown_error(e):
-    sys.stdout.write(colors['RED'])
-    print('Unknown error: {}\n'.format(e))
-    sys.exit(500)
-
-
-def permission_error():
-    sys.stdout.write(colors['RED'])
-    print('Not enough permissions! run file with sudo\n')
-    sys.exit(403)
-
-
 sys.stdout.write(colors['CYAN'])
 print('Creating main directory ...\n')
 
@@ -213,13 +212,13 @@ make_main_dir(tries)
 
 os.chdir('/etc/pylocalhost')
 sys.stdout.write(colors['CYAN'])
-print('Initializing virtual enviroment ...\n')
+print('Initializing virtual environment ...\n')
 
 venv_init = os.popen('sudo {} -m virtualenv .venv'.format(info['python']))
 os.waitpid(venv_init._proc.pid, 0)
 
 if not os.path.isfile('/etc/pylocalhost/.venv/bin/python'):
-    unknown_error('Could not initialize virtual envirpment\n')
+    unknown_error('Could not initialize virtual environment\n')
 
 print('Cloning software from Github ...')
 
