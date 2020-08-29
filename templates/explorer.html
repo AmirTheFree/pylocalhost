@@ -54,6 +54,11 @@
                             alt="Stop all working Jupyter notebooks on this system" class="baricon">
                     </a>
                 </abbr>
+                <abbr title="Create a new file on current directory">
+                    <a href="{{ url_for('editor') }}?path={{ p }}">
+                        <img src="{{ url_for('static', filename='image/plus.png') }}" alt="Create a new file on current directory">
+                    </a>
+                </abbr>
                 <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
             </div>
             <hr>

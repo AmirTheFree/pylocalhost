@@ -1,0 +1,23 @@
+{% extends 'explorer.html' %}
+
+{% block title %}PyLH Editor{% endblock title %}
+
+{% block content %}
+{% include 'includes/title.html' %}
+<div class="container">
+    <h1>PyLH Editor</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        File name:
+        <br>
+        {{ form.name }}
+        <br>
+        Content:
+        <br>
+        {{ form.content }}
+        <br>
+        <br>
+        <input type="submit" value="Save">
+    </form>
+</div>
+{% endblock content %}
