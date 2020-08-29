@@ -2,6 +2,18 @@
 
 {% block title %}PyLH Editor{% endblock title %}
 
+{% block exhead %}
+<link rel="stylesheet" href="{{ url_for('static',filename='codemirror/codemirror.css') }}">
+<script src="{{ url_for('static',filename='codemirror/codemirror.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='codemirror/monokai.css') }}">
+<script src="{{ url_for('static',filename='codemirror/htmlembedded.js') }}"></script>
+<script src="{{ url_for('static',filename='codemirror/javascript.js') }}"></script>
+<script src="{{ url_for('static',filename='codemirror/python.js') }}"></script>
+<script src="{{ url_for('static',filename='codemirror/css.js') }}"></script>
+<script src="{{ url_for('static',filename='codemirror/markdown.js') }}"></script>
+<script src="{{ url_for('static',filename='codemirror/php.js') }}"></script>
+{% endblock exhead %}
+
 {% block content %}
 {% include 'includes/title.html' %}
 <div class="container">
@@ -11,13 +23,28 @@
         File name:
         <br>
         {{ form.name }}
+        &nbsp;
+        File type:
+        &nbsp;
+        <select id="type">
+            <option value="">Text</option>
+            <option value="htmlmixed">HTML</option>
+            <option value="css">CSS</option>
+            <option value="javascript">JavaScript</option>
+            <option value="markdown">Markdown</option>
+            <option value="python">Python</option>
+            <option value="php">PHP</option>
+        </select>
         <br>
         Content:
         <br>
         {{ form.content }}
         <br>
         <br>
-        <input type="submit" value="Save">
+        <center>
+            <input type="submit" value="Save">
+        </center>
     </form>
 </div>
+<script src="{{ url_for('static',filename='script/editor.js') }}"></script>
 {% endblock content %}
