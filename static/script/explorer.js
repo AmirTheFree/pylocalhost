@@ -24,6 +24,13 @@ function sysopen(path) {
     ajax.send();
 };
 
+function createFolder() {
+    var folder_name = prompt('Enter a name for new folder:');
+    if (folder_name){
+        location.href = rp + '/newfolder/?path=' + p + '&name=' + folder_name
+    }
+}
+
 document.getElementById('del').addEventListener('click',function (e){
     result = confirm('Are you sure?');
     if (!result){

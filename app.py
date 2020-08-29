@@ -148,3 +148,15 @@ def editor():
             return '<span style="font-weight:bold;color:red;">An Error occurred while saving file!</span>'
 
     return render_template('editor.html',form = form)
+
+@app.route('/newfolder/', methods=['GET'])
+def new_folder():
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            abort(403) #TODO remove commnets
+    if not isinstance(request.args.get('path',False),str) or not request.args.get('name',False):
+        abort(400)
+    try:
+        os.mkdir(os.path.join(home,'Pylocalhost',request.args['path'],request.args['name']))
+        return redirect(f'http://{request.host}/' + request.args['path'])
+    except:
+        return '<span style="font-weight:bold;color:red;">An Error occurred while creating folder!</span>'

@@ -61,6 +61,11 @@
                         <img src="{{ url_for('static', filename='image/plus.png') }}" alt="Create a new file on current directory">
                     </a>
                 </abbr>
+                <abbr title="Create a new folder on current directory">
+                    <a href="javascript:void(0);" onclick="createFolder()">
+                        <img src="{{ url_for('static',filename='image/newfolder.png') }}" alt="Create a new folder on current directory" class="baricon">
+                    </a>
+                </abbr>
                 <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
             </div>
             <hr>
