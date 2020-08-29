@@ -15,6 +15,7 @@
 <body>
     {% block content %}
     <script>
+        var p =  "{{ p }}"
         var xp = "{{ url_for('explorer') }}" + "{{ p }}";
         var rp = "{{ rp }}"
     </script>
@@ -98,6 +99,10 @@
         <hr>
         <a id="run" target="blank">
             <div>Run script</div>
+        </a>
+        <hr>
+        <a id="edit" target="blank">
+            <div>Edit</div>
         </a>
         <hr>
         <a id="src" target="blank">

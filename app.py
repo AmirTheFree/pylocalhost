@@ -128,8 +128,15 @@ def explorer(p):
 
 @app.route('/editor/', methods = ['GET', 'POST'])
 def editor():
-    # if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
-    #         abort(403)
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            abort(403)
+    if not isinstance(request.args.get('path',False),str):
+        abort(400)
+    form = forms.FileForm()
+    if request.args.get('file',False):
+        form = forms.FileForm()
+        form.name.data = request.args['file']
+        form.content.data = mwxpy.rwfile(os.path.join(home,'Pylocalhost',request.args['path'],request.args['file']))
     if request.method == 'POST':
         form = forms.FileForm(request.form)
         if not form.validate_on_submit():
@@ -140,5 +147,4 @@ def editor():
         except:
             return '<span style="font-weight:bold;color:red;">An Error occurred while saving file!</span>'
 
-    form = forms.FileForm()
     return render_template('editor.html',form = form)
