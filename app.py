@@ -152,7 +152,7 @@ def editor():
 @app.route('/newfolder/', methods=['GET'])
 def new_folder():
     if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
-            abort(403) #TODO remove commnets
+            abort(403)
     if not isinstance(request.args.get('path',False),str) or not request.args.get('name',False):
         abort(400)
     try:

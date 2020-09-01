@@ -90,6 +90,7 @@ And then run:(to prevent possible problems):
     * JSON
 * Bash script
 * Nginx
+* CodeMirror
 
 _Made by an Iranian_ :iran:
 
