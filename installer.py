@@ -55,6 +55,10 @@ atexit.register(end)
 
 # Defining some required functions
 
+def run(command):
+	p = os.popen(command)
+	os.waitpid(p._proc.pid,0)
+
 def unknown_error(e):
     sys.stdout.write(colors['RED'])
     print('Unexpected error: {}\n'.format(e))
@@ -163,9 +167,7 @@ else:
 sys.stdout.write(colors['CYAN'])
 print('Installing virtualenv ...')
 try:
-    venv_setup = os.popen(
-        'sudo -H {} -m pip install virtualenv'.format(info['python']))
-    os.waitpid(venv_setup._proc.pid, 0)
+	run('sudo -H {} -m pip install virtualenv'.format(info['python']))
 except BrokenPipeError:
     pass
 check_installtion('virtualenv')
@@ -214,17 +216,14 @@ os.chdir('/etc/pylocalhost')
 sys.stdout.write(colors['CYAN'])
 print('Initializing virtual environment ...\n')
 
-venv_init = os.popen('sudo {} -m virtualenv .venv'.format(info['python']))
-os.waitpid(venv_init._proc.pid, 0)
+run('sudo {} -m virtualenv .venv'.format(info['python']))
 
 if not os.path.isfile('/etc/pylocalhost/.venv/bin/python'):
     unknown_error('Could not initialize virtual environment\n')
 
 print('Cloning software from Github ...')
 
-git_proccess = os.popen(
-    'sudo git clone https://github.com/mwxgaf/pylocalhost.git temp')
-os.waitpid(git_proccess._proc.pid, 0)
+run('sudo git clone https://github.com/mwxgaf/pylocalhost.git temp')
 copy_tree('/etc/pylocalhost/temp', '/etc/pylocalhost')
 shutil.rmtree('/etc/pylocalhost/temp')
 
@@ -234,9 +233,7 @@ if not os.path.isfile('/etc/pylocalhost/app.py'):
 print('Installing dependencies ... Please wait it may take a while ...')
 
 try:
-    req_install_porcess = os.popen(
-        'sudo -H /etc/pylocalhost/.venv/bin/pip install -r requirements.txt')
-    os.waitpid(req_install_porcess._proc.pid, 0)
+    run('sudo -H /etc/pylocalhost/.venv/bin/pip install -r requirements.txt')
 except BrokenPipeError:
     pass
 
@@ -247,8 +244,7 @@ while not info['jupyter_installed']:
         sys.stdout.write(colors['CYAN'])
         print('Installing Jupyter please wait it may take a while ...')
         try:
-            jupyter_install_process = os.popen('sudo -H /etc/pylocalhost/.venv/bin/pip install jupyter')
-            os.waitpid(jupyter_install_process._proc.pid,0)
+            run('sudo -H /etc/pylocalhost/.venv/bin/pip install jupyter')
         except BrokenPipeError:
             pass
         info['jupyter_installed'] = True
@@ -291,8 +287,7 @@ os.symlink('/etc/nginx/sites-available/pylocalhost',
 
 print('Reloading Systemctl daemon ...')
 
-daemon_reload = os.popen('sudo systemctl daemon-reload')
-os.waitpid(daemon_reload._proc.pid, 0)
+run('sudo systemctl daemon-reload')
 
 print('Intsalling CLI ...')
 
@@ -306,6 +301,16 @@ os.symlink('/usr/bin/pylocalhost', '/usr/bin/pylh')
 
 if not os.path.isfile('/usr/bin/pylocalhost') or not os.path.islink('/usr/bin/pylh'):
     unknown_error('Could not install CLI')
+
+print('Downloading CodeMirror files ...')
+os.mkdir('/etc/pylocalhost/static/codemirror')
+os.chdir('/etc/pylocalhost/static/codemirror')
+
+for url in ['http://bayanbox.ir/view/4819108218995809028/cobalt.css','http://bayanbox.ir/view/5845364735760611073/codemirror.css','http://bayanbox.ir/view/8723841575246188377/codemirror.js','http://bayanbox.ir/view/2163356795121549378/css.js','http://bayanbox.ir/view/5667818355064209123/eclipse.css','http://bayanbox.ir/view/1219708251195226261/htmlembedded.js','http://bayanbox.ir/view/1421977402385602506/isotope.css','http://bayanbox.ir/view/8235731700109004525/javascript.js','http://bayanbox.ir/view/9118313191000262204/markdown.js','http://bayanbox.ir/view/1267880735759285854/monokai.css','http://bayanbox.ir/view/9178237286963248335/neat.css','http://bayanbox.ir/view/3399704187251334873/php.js','http://bayanbox.ir/view/3788822247937739817/python.js']:
+	run(f'wget {url}')
+
+if not os.path.isfile('/etc/pylocalhost/static/codemirror/python.js'):
+	unknown_error('Could not download CodeMirror files')
 
 print('Creating test files ...')
 try:
