@@ -1,6 +1,7 @@
 // In the name of Allah
 
 var langs = ['','html','css','javascript','markdown','python','php']
+var themes = ['monokai','isotope','cobalt','eclipse','neat']
 
 var editor = CodeMirror.fromTextArea(document.getElementById('content'),{
     lineNumbers: true,
@@ -9,9 +10,13 @@ var editor = CodeMirror.fromTextArea(document.getElementById('content'),{
     lineWrapping: true
 });
 
-document.getElementById('type').addEventListener('change',function () {
-    editor.setOption('mode',langs[document.getElementById('type').options.selectedIndex])
+document.getElementById('type').addEventListener('change', function () {
+    editor.setOption('mode', langs[document.getElementById('type').options.selectedIndex])
 });
+
+document.getElementById('theme').addEventListener('change', function () {
+    editor.setOption('theme', themes[document.getElementById('theme').options.selectedIndex])
+})
 
 switch (document.getElementById('name').value.split('.').pop()) {
     case 'js':

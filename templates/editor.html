@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/codemirror.css') }}">
 <script src="{{ url_for('static',filename='codemirror/codemirror.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/monokai.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='codemirror/isotope.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='codemirror/cobalt.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='codemirror/eclipse.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='codemirror/neat.css') }}">
 <script src="{{ url_for('static',filename='codemirror/htmlembedded.js') }}"></script>
 <script src="{{ url_for('static',filename='codemirror/javascript.js') }}"></script>
 <script src="{{ url_for('static',filename='codemirror/python.js') }}"></script>
@@ -34,6 +38,16 @@
             <option value="markdown">Markdown</option>
             <option value="python">Python</option>
             <option value="php">PHP</option>
+        </select>
+        &nbsp;
+        Theme:
+        &nbsp;
+        <select id="theme">
+            <option>Monokai</option>
+            <option>Isotope</option>
+            <option>Cobalt</option>
+            <option>Eclipse</option>
+            <option>Neat</option>
         </select>
         <br>
         Content:
