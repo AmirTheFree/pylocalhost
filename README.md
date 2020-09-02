@@ -27,9 +27,9 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 `$ sudo systemctl enable --now php7.4-fpm`
 
-### Installation
+### Installation (Beta version)
 
-#### NOTE: The version below is unstable(Beta) --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.2) for the latest stable version (1.2).
+#### :point_right: NOTE: The version below is unstable(Beta) --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.2) for the latest stable version (1.2) :point_left:
 
 Download `preinstaller.py` file which is in the repository.
 
