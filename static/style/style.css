@@ -253,3 +253,7 @@ input[type=text],select {
     transform: translateY(110px) translateX(-100px); /* -100 for stable version*/
     line-height: 2em;
 }
+
+.CodeMirror {
+    resize: vertical;
+}

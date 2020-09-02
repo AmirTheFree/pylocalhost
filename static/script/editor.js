@@ -5,7 +5,8 @@ var langs = ['','html','css','javascript','markdown','python','php']
 var editor = CodeMirror.fromTextArea(document.getElementById('content'),{
     lineNumbers: true,
     theme: 'monokai',
-    mode: langs[document.getElementById('type').options.selectedIndex]
+    mode: langs[document.getElementById('type').options.selectedIndex],
+    lineWrapping: true
 });
 
 document.getElementById('type').addEventListener('change',function () {
