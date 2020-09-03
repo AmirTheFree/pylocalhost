@@ -222,11 +222,11 @@ input[type=text],select {
 
 .menu {
     display: inline;
-    border: 2px outset whitesmoke;
-    border-radius: 7px;
-    padding: 3px;
+    border-radius: 3px;
+    padding: 9px;
     background-color:brown;
     position: absolute;
+    width: max-content;
 }
 
 .menu #oos {
@@ -236,10 +236,17 @@ input[type=text],select {
     padding: 0;
     color: yellow;
     cursor: pointer;
+    font-size: inherit;
 }
 
 .menu *:hover {
     color: rebeccapurple;
+}
+
+.menu>hr {
+    border: none;
+    background-color: white;
+    height: 1px;
 }
 
 #titr {
