@@ -74,18 +74,18 @@ def explorer(p):
             abort(403)
         if p.lower().endswith('.py'):
             try:
-                return '<span style="color:green;">Python script ran successsfully here is the output:</span><br><br>' + os.popen(f'{python} {home}/Pylocalhost/{p}').read(),200
+                return '<span style="font-weight:bold;color:green;">Python script ran successsfully here is the output:</span><br><br>' + os.popen(f'{python} {home}/Pylocalhost/{p}').read(),200
             except:
-                return '<span style="color:red;">Could not run script successfully!</span>',500
+                return '<span style="font-weight:bold;color:red;">Could not run script successfully!</span>',500
         elif p.lower().endswith('.js'):
             if not os.popen('which node').read().startswith('/'):
-                return '<span style="color:red;">You don\'t have NodeJS installed on your system!</span>'
+                return '<span style="font-weight:bold;color:red;">You don\'t have NodeJS installed on your system!</span>'
             try:
-                return '<span style="color:green;">Javascript ran successfully here is the output:</span><br><br>' + os.popen(f'node {home}/Pylocalhost/{p}').read(),200
+                return '<span style="font-weight:bold;color:green;">Javascript ran successfully here is the output:</span><br><br>' + os.popen(f'node {home}/Pylocalhost/{p}').read(),200
             except:
-                return '<span style="color:red;">Could not run script successfully!</span>',500
+                return '<span style="font-weight:bold;color:red;">Could not run script successfully!</span>',500
         else:
-            return '<span style="color: red;">PyLocalHost is only able to run Javascript or Python scripts</span>',400
+            return '<span style="font-weight:bold;color: red;">PyLocalHost is only able to run Javascript or Python scripts</span>',400
         
     if request.args.get('sysopen') == 'true':
         if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
@@ -160,3 +160,15 @@ def new_folder():
         return redirect(f'http://{request.host}/' + request.args['path'])
     except:
         return '<span style="font-weight:bold;color:red;">An Error occurred while creating folder!</span>'
+
+@app.route('/rename/', methods=['GET'])
+def rename():
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            abort(403)
+    if not isinstance(request.args.get('path',False),str) or not request.args.get('name',False) or not request.args.get('new',False):
+        abort(400)
+    try:
+        os.rename(os.path.join(home,'Pylocalhost',request.args['path'],request.args['name']), os.path.join(home,'Pylocalhost',request.args['path'],request.args['new']))
+        return redirect(f'http://{request.host}/' + request.args['path'])
+    except:
+        return '<span style="font-weight:bold;color:red;">An Error occurred while renaming item</span>'

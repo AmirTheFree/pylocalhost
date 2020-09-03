@@ -27,9 +27,9 @@ function sysopen(path) {
 function createFolder() {
     var folder_name = prompt('Enter a name for new folder:');
     if (folder_name){
-        location.href = rp + '/newfolder/?path=' + p + '&name=' + folder_name
-    }
-}
+        location.href = rp + '/newfolder/?path=' + p + '&name=' + folder_name;
+    };
+};
 
 document.getElementById('del').addEventListener('click',function (e){
     result = confirm('Are you sure?');
@@ -47,17 +47,33 @@ function rightclick(element, event) {
     document.getElementById('dl').setAttribute('href',rp + '/d' + element.firstElementChild.getAttribute('href').slice(0,-1));
     document.getElementById('src').setAttribute('href',rp + '/t' + element.firstElementChild.getAttribute('href').slice(0,-1));
     document.getElementById('edit').setAttribute('href',rp + '/editor?path=' + p + '&file=' + element.firstElementChild.innerText)
+    // Button functions
     function systemredirector(e){
         this.setAttribute('disabled','disabled');       
         sysopen(rp + element.firstElementChild.getAttribute('href'));
     };
+    function renamer(e) {
+        this.setAttribute('disabled','disabled');
+        newName = prompt('Enter a new name:',element.firstElementChild.innerText);
+        if (newName) {
+            location.href = rp + '/rename/?path=' + p + '&name=' + element.firstElementChild.innerText + '&new=' + newName;
+        };
+    };
+    // Rebuild oss button
     var old_oos = document.getElementById('oos');
     var new_oos = old_oos.cloneNode(true);
     old_oos.parentNode.replaceChild(new_oos,old_oos);
     old_oos.remove();
     document.getElementById('oos').addEventListener('click',systemredirector);
     document.getElementById('oos').removeAttribute('disabled');
-    menu.setAttribute('class','menu')
+    // Rebuild rename button
+    var old_rename = document.getElementById('rename');
+    var new_rename = old_rename.cloneNode(true);
+    old_rename.parentNode.replaceChild(new_rename, old_rename);
+    old_rename.remove();
+    document.getElementById('rename').addEventListener('click',renamer);
+    document.getElementById('rename').removeAttribute('disabled');
+    menu.setAttribute('class','menu');
     menu.style = 'top: ' + event.pageY + 'px;left: ' + event.pageX + 'px;';
 };
 
