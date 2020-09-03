@@ -273,3 +273,10 @@ input[type=text],select {
 .helptext {
     line-height: 1.7em;
 }
+
+.toolhelp>a>div {
+    position: relative;
+    display: inline-block;
+    top: 50%;
+    transform: translateY(-25px);
+}

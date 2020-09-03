@@ -12,11 +12,12 @@
     It is useful for serving HTML,Ajax,PHP and every thing that needs a webserver.
     <br><br>
     <hr>
-    <a href="{{ url_for('guid') }}?fa=true">
-        <img src="{{ url_for('static',filename='image/iran.png') }}" alt="farsi" class="info">
-        Persian | فارسی
-    </a>
-    <br>
+    <div class="toolhelp">
+        <a href="{{ url_for('guid') }}?fa=true">
+            <img src="{{ url_for('static',filename='image/iran.png') }}" alt="farsi" class="info">
+            <div>Persian | فارسی</div>
+        </a>
+    </div>
     <hr>
     NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end
     of directory urls.
