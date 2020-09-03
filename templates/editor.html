@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/cobalt.css') }}">
 <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/eclipse.css') }}">
 <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/neat.css') }}">
-<script src="{{ url_for('static',filename='codemirror/htmlembedded.js') }}"></script>
+<script src="{{ url_for('static',filename='codemirror/xml.js') }}"></script>
 <script src="{{ url_for('static',filename='codemirror/javascript.js') }}"></script>
 <script src="{{ url_for('static',filename='codemirror/python.js') }}"></script>
 <script src="{{ url_for('static',filename='codemirror/css.js') }}"></script>
@@ -32,7 +32,7 @@
         &nbsp;
         <select id="type">
             <option value="">Text</option>
-            <option value="htmlmixed">HTML</option>
+            <option value="xml" id="xml">HTML</option>
             <option value="css">CSS</option>
             <option value="javascript">JavaScript</option>
             <option value="markdown">Markdown</option>

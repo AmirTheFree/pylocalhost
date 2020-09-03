@@ -1,6 +1,6 @@
 // In the name of Allah
 
-var langs = ['','html','css','javascript','markdown','python','php']
+var langs = ['','xml','css','javascript','markdown','python','php']
 var themes = ['monokai','isotope','cobalt','eclipse','neat']
 
 var editor = CodeMirror.fromTextArea(document.getElementById('content'),{
@@ -24,12 +24,16 @@ switch (document.getElementById('name').value.split('.').pop()) {
         document.querySelector('option[value=javascript]').setAttribute('selected',null);
         break;
     case 'html':
-        editor.setOption('mode','htmlembedded');
-        document.querySelector('option[value=htmlembedded]').setAttribute('selected',null);
+        editor.setOption('mode','xml');
+        document.getElementById('xml').setAttribute('selected',null)
         break;
     case 'htm':
-        editor.setOption('mode','htmlembedded');
-        document.querySelector('option[value=htmlembedded]').setAttribute('selected',null);
+        editor.setOption('mode','xml');
+        document.querySelector('option[value=xml]').setAttribute('selected',null);
+        break;
+    case 'xml':
+        editor.setOption('mode','xml');
+        document.querySelector('option[value=xml]').setAttribute('selected',null);
         break;
     case 'css':
         editor.setOption('mode','css');
