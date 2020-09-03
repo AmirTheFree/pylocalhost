@@ -82,6 +82,7 @@ And then run:(to prevent possible problems):
 * Python
     * Flask
     * Jinja
+    * WTForms
     * GUnicorn
     * [MWXpy](https://github.com/mwxgaf/mwxpy)
 * HTML
