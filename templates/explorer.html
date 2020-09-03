@@ -23,6 +23,7 @@
         {% include 'includes/title.html' %}
         <div class='container'>
             <div class="addrbar">
+                <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
                 <abbr title="Go to ~/Pylocalhost">
                     <a href="{{ url_for('explorer') }}"><img src="{{ url_for('static',filename='image/home.png') }}"
                             alt="Home" class="baricon"></a>
@@ -58,7 +59,7 @@
                 </abbr>
                 <abbr title="Create a new file on current directory">
                     <a href="{{ url_for('editor') }}?path={{ p }}">
-                        <img src="{{ url_for('static', filename='image/plus.png') }}" alt="Create a new file on current directory">
+                        <img src="{{ url_for('static', filename='image/plus.png') }}" alt="Create a new file on current directory" class="baricon">
                     </a>
                 </abbr>
                 <abbr title="Create a new folder on current directory">
@@ -66,7 +67,6 @@
                         <img src="{{ url_for('static',filename='image/newfolder.png') }}" alt="Create a new folder on current directory" class="baricon">
                     </a>
                 </abbr>
-                <div class="addr"><span class='static'>Address: </span>~/Pylocalhost/{{ p }}</div>
             </div>
             <hr>
             <div class="table">

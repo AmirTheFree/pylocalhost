@@ -4,91 +4,124 @@
 
 {% block content %}
 {% include 'includes/title.html' %}
-A server for serving and rendering files in localhost.
-<br>
-This is a web-based file explorer and its root path is your ~/Pylocalhost directory.
-<br>
-It is useful for serving HTML,Ajax,PHP and every thing that needs a webserver.
-<br><br>
-<hr>
-<a href="{{ url_for('guid') }}?fa=true">
-    <img src="{{ url_for('static',filename='image/iran.png') }}" alt="farsi" class="info">
-    Persian | فارسی
-</a>
-<br>
-<hr>
-NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end
-of directory urls.
-<br>
-For example:
-<br>
-http://localhost/folder1/folder2/ (Returns the GUI file manager) --> http://localhost/folder1/folder2/?api=true (Returns
-JSON)
-<br><br>
-<hr>
-<h4>CLI Usage:</h4>
-<code>$ sudo pylh &lt;command&gt;</code>
-<br>
-<br>
-Commands:
-<ul>
-    <li>start --> Start Pylocalhost</li>
-    <li>stop --> Stop Pylocalhost</li>
-    <li>restart --> Reload config files & restart Pylocalhost</li>
-    <li>enable --> Enable run as start up for Pylocalhost</li>
-    <li>disable --> Disable run as start up for Pylocalhost</li>
-    <li>help --> Show help</li>
-    <li>? --> Show help</li>
-</ul>
-<hr>
-<h4>Settings help</h4>
-<p><b>Allow requests from unknown hosts:</b>
+<div class="helptext">
+    A server for serving and rendering files in localhost.
     <br>
-    Allow this option if you want to share your Pylocalhost over network
+    This is a web-based file explorer and its root path is your ~/Pylocalhost directory.
     <br>
-    If you disallow this option Pylocalhost will be available only from http://localhost or http://127.0.0.1 so other
-    people cannot accesss to your pylocalhost and it is only accessible form your computer and localhost(or its ip : 127
-    ...)
+    It is useful for serving HTML,Ajax,PHP and every thing that needs a webserver.
+    <br><br>
+    <hr>
+    <a href="{{ url_for('guid') }}?fa=true">
+        <img src="{{ url_for('static',filename='image/iran.png') }}" alt="farsi" class="info">
+        Persian | فارسی
+    </a>
     <br>
-    NOTE: This option is disallowed by default
+    <hr>
+    NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end
+    of directory urls.
     <br>
-    WARNING: If you allow this option your Pylocalhost will be shared over network be sure and aware about what are you
-    doing.
+    For example:
     <br>
-    NOTE: Settings part won't be accessible by other people even if you allow this option.
-</p>
-<p>
-    <b>Show hidden files:</b>
+    http://localhost/folder1/folder2/ (Returns the GUI file manager) --> http://localhost/folder1/folder2/?api=true (Returns
+    JSON)
+    <br><br>
+    <hr>
+    <h4>CLI Usage:</h4>
+    <code>$ sudo pylh &lt;command&gt;</code>
     <br>
-    Select Show option if you want Pylocalhost to show Unix hidden files (starting with . )
     <br>
-    NOTE: This option is disabled by default
-</p>
-<hr>
-<h4>Toolbar help</h4>
-You can see a toolbar above the files and folders that has some sections:
-<br>
-1 - Home icon: Return you back to the home page of localhost which shows files in your ~/Pylocalhost .
-<br>
-2 - Back icon: Keeps you to the parent directory.
-<br>
-3 - Red folder icon: Opens the current directory using your systems default file browser/manager. If it fails nothing
-will happen :)
-<br>
-4 - Red folder icon in green Nginx icon : Serves current directory using nginx so it will show you the index file or
-forbidden page.
-<br>
-5 - Jupyter icon : Starts a Jupyter notebook on current directory(If you had accepted Jupyter installation when you was installing PyLocalHost).If it fails nothing will happen.
-<br>
-6 - Delete icon on Jupyter icon: Stop all running Jupyter notebooks.If it fails nothing will happen(It may not work).
-<br>
-7 - Adress bar: Shows the path of current directory.
-<br><br>
-<hr>
-<b>More at: <<a href="https://mwxgaf.github.io/pylocalhost">mwxgaf.github.io/pylocalhost</a>
+    Commands:
+    <ul>
+        <li>start --> Start Pylocalhost</li>
+        <li>stop --> Stop Pylocalhost</li>
+        <li>restart --> Reload config files & restart Pylocalhost</li>
+        <li>enable --> Enable run as start up for Pylocalhost</li>
+        <li>disable --> Disable run as start up for Pylocalhost</li>
+        <li>help --> Show help</li>
+        <li>? --> Show help</li>
+    </ul>
+    <hr>
+    <h4>Settings help</h4>
+    <p><b>Allow requests from unknown hosts:</b>
+        <br>
+        Allow this option if you want to share your Pylocalhost over network
+        <br>
+        If you disallow this option Pylocalhost will be available only from http://localhost or http://127.0.0.1 so other
+        people cannot accesss to your pylocalhost and it is only accessible form your computer and localhost(or its ip : 127
+        ...)
+        <br>
+        NOTE: This option is disallowed by default
+        <br>
+        WARNING: If you allow this option your Pylocalhost will be shared over network be sure and aware about what are you
+        doing.
+        <br>
+        NOTE: Settings part won't be accessible by other people even if you allow this option.
+    </p>
+    <p>
+        <b>Show hidden files:</b>
+        <br>
+        Select Show option if you want Pylocalhost to show Unix hidden files (starting with . )
+        <br>
+        NOTE: This option is disabled by default
+    </p>
+    <hr>
+    <h4>Toolbar help</h4>
+    <i>You can see a toolbar above the files and folders that has some items:</i>
     <br>
-    Our Email: <a href="mailto:pylh@mwxg.ir">pylh@mwxg.ir</a>
-</b>
-<p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our
-                    Github</a></i></b></u> if you have a problem or question.</p>
+    <br>
+    <div class="toolhelp">
+        <img src="{{ url_for('static',filename='image/home.png') }}" alt="home">
+        <div>Returns you back to the home page of localhost which shows files in your ~/Pylocalhost</div>
+    </div>
+    <br>
+    <div class="toolhelp">
+        <img src="{{ url_for('static',filename='image/back.png') }}" alt="back">
+        <div>Keeps you to the parent directory</div>
+    </div>
+    <br>
+    <div class="toolhelp">
+        <img src="{{ url_for('static',filename='image/opencurrent.png') }}" alt="open current folder">
+        <div>Opens the current directory using your systems default file browser/manager. If it fails nothing will happen</div>
+    </div>
+    <br>
+    <div class="toolhelp">
+        <img src="{{ url_for('static',filename='image/server.png') }}" alt="serve current folder">
+        <div>Serves current directory using nginx so it will show you the index file or forbidden page</div>
+    </div>
+    <br>
+    <div class="toolhelp">
+        <img src="{{ url_for('static',filename='image/jupyter.png') }}" alt="start jupyter notebook here">
+        <div>
+            Starts a Jupyter notebook on current directory.(If you had accepted Jupyter installation when you was installing PyLocalHost)
+        </div>
+        <br>
+        If it fails nothing will happen
+    </div>
+    <br>
+    <div class="toolhelp">
+        <img src="{{ url_for('static',filename='image/kill.png') }}" alt="stop all running jupyter notebooks">
+        <div>Stop all running Jupyter notebooks.If it fails nothing will happen(It may not work)</div>
+    </div>
+    <br>
+    <div class="toolhelp">
+        <img src="{{ url_for('static',filename='image/plus.png') }}" alt="new file">
+        <div>Create a new file in current directory</div>
+    </div>
+    <br>
+    <div class="toolhelp">
+        <img src="{{ url_for('static',filename='image/newfolder.png') }}" alt="new folder">
+        <div>Create a new folder in current directory</div>
+    </div>
+    <br>
+    <span class="static">Address</span> Shows the path of current directory
+    <br><br>
+    <hr>
+    <b>More at: <a href="https://mwxgaf.github.io/pylocalhost">mwxgaf.github.io/pylocalhost</a>
+        <br>
+        Our Email: <a href="mailto:pylh@mwxg.ir">pylh@mwxg.ir</a>
+    </b>
+    <p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our
+    Github</a></i></b></u> if you have a problem or question.</p>
+</div>
 {% endblock content %}

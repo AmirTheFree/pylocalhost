@@ -72,9 +72,8 @@ span.lh {
 .addr {
     font-size: 20px;
     font-weight: bold;
-    display: inline;
     position: relative;
-    top: -10px;
+    margin-bottom: 10px;
 }
 
 .addrbar {
@@ -92,6 +91,7 @@ h1 {
 
 .static {
     color: goldenrod;
+    font-weight: bold;
 }
 
 div img.baricon {
@@ -256,4 +256,20 @@ input[type=text],select {
 
 .CodeMirror {
     resize: vertical;
+}
+
+.toolhelp>img {
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.toolhelp>div {
+    position: relative;
+    display: inline-block;
+    top: 50%;
+    transform: translateY(-12px);
+}
+
+.helptext {
+    line-height: 1.7em;
 }
