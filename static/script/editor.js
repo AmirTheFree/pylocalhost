@@ -23,6 +23,10 @@ switch (document.getElementById('name').value.split('.').pop()) {
         editor.setOption('mode','javascript');
         document.querySelector('option[value=javascript]').setAttribute('selected',null);
         break;
+    case 'json':
+        editor.setOption('mode','javascript');
+        document.querySelector('option[value=javascript]').setAttribute('selected',null);
+        break;
     case 'html':
         editor.setOption('mode','xml');
         document.getElementById('xml').setAttribute('selected',null)
