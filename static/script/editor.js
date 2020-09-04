@@ -10,6 +10,8 @@ var editor = CodeMirror.fromTextArea(document.getElementById('content'),{
     lineWrapping: true
 });
 
+editor.setSize('auto',330);
+
 document.getElementById('type').addEventListener('change', function () {
     editor.setOption('mode', langs[document.getElementById('type').options.selectedIndex])
 });
