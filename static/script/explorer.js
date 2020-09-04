@@ -7,12 +7,20 @@ document.addEventListener('click',function (e){
 },false);
 
 function startNoteBook(path) {
+    if (jupyter == '0'){
+        alert('Jupyter is not installed');
+        return 'Jupyter is not installed';
+    };
     var ajax = new XMLHttpRequest();
     ajax.open('GET',path + '?notebook=true',true);
     ajax.send();
 };
 
 function stopNoteBook() {
+     if (jupyter == '0'){
+        alert('Jupyter is not installed');
+        return 'Jupyter is not installed';
+    };
     var ajax = new XMLHttpRequest();
     ajax.open('GET',rp + 'stopjupyter/',true);
     ajax.send();

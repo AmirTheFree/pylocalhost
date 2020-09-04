@@ -15,9 +15,10 @@
 <body>
     {% block content %}
     <script>
-        var p =  "{{ p }}"
+        var p =  "{{ p }}";
         var xp = "{{ url_for('explorer') }}" + "{{ p }}";
-        var rp = "{{ rp }}"
+        var rp = "{{ rp }}";
+        var jupyter = "{{ jupyter }}";
     </script>
     <center>
         {% include 'includes/title.html' %}

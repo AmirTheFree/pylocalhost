@@ -69,6 +69,7 @@ def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)
     show_hidden_files = mwxpy.rwjson('info.json')['show_hidden_files']
+    jupyter_installed = '1' if mwxpy.rwjson('info.json')['jupyter_installed'] else '0'
     if request.args.get('dl') == 'true':
         return redirect(f'http://{request.host}/d/' + p)
     if request.args.get('run') == 'true':
@@ -122,7 +123,7 @@ def explorer(p):
         if request.args.get('srvdir') == 'true':
             return redirect(f'http://{request.host}/s/' + p)
         ls = mwxpy.browse(path,show_hidden_files)
-        return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p, rp = f'http://{request.host}' )
+        return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p, rp = f'http://{request.host}' , jupyter = jupyter_installed)
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect(f'http://{request.host}/s/' + p)
     else:
