@@ -13,6 +13,8 @@
             <br>
             Show hidden files : {{ form.show_hidden_files }}
             <br>
+            Default editor theme: {{ form.theme }}
+            <br>
             <input type="submit" value="Save">
         </form>
         <br>
@@ -22,6 +24,7 @@
 </center>
 <script>
     ("{{ data['host'] }}" == '1')? document.getElementById('host-0').setAttribute('checked','checked') : document.getElementById('host-1').setAttribute('checked','checked');
-    ("{{ data['show_hidden_files'] }}" == '1')? document.getElementById('show_hidden_files-0').setAttribute('checked','checked') : document.getElementById('show_hidden_files-1').setAttribute('checked','checked');  
+    ("{{ data['show_hidden_files'] }}" == '1')? document.getElementById('show_hidden_files-0').setAttribute('checked','checked') : document.getElementById('show_hidden_files-1').setAttribute('checked','checked');
+    document.querySelector("option[value={{ data['theme'] }}]").setAttribute('selected',null);
 </script>
 {% endblock content %}

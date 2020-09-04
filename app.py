@@ -45,10 +45,12 @@ def settings():
             abort(400)
         inf['host'] = True if form.host.data == '1' else False
         inf['show_hidden_files'] = True if form.show_hidden_files.data == '1' else False
+        inf['theme'] = form.theme.data
         mwxpy.rwjson('info.json',inf)
+        return redirect(f'http://{request.host}')
         
     form = forms.SettingsForm()
-    data = {'host':'1' if inf['host'] else '0','show_hidden_files': '1' if inf['show_hidden_files'] else '0'}
+    data = {'host':'1' if inf['host'] else '0','show_hidden_files': '1' if inf['show_hidden_files'] else '0','theme': inf['theme']}
     return render_template('settings.html',form=form,data = data)
 
 @app.route('/stopjupyter/', methods =['GET'])
@@ -146,8 +148,8 @@ def editor():
             return redirect(f'http://{request.host}/' + request.args['path'])
         except:
             return '<span style="font-weight:bold;color:red;">An Error occurred while saving file!</span>'
-
-    return render_template('editor.html',form = form)
+    inf = mwxpy.rwjson('info.json')
+    return render_template('editor.html',form = form,theme = inf['theme'])
 
 @app.route('/newfolder/', methods=['GET'])
 def new_folder():

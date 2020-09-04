@@ -43,11 +43,11 @@
         Theme:
         &nbsp;
         <select id="theme">
-            <option>Monokai</option>
-            <option>Isotope</option>
-            <option>Cobalt</option>
-            <option>Eclipse</option>
-            <option>Neat</option>
+            <option value="monokai">Monokai</option>
+            <option value="isotope">Isotope</option>
+            <option value="cobalt">Cobalt</option>
+            <option value="eclipse">Eclipse</option>
+            <option value="neat">Neat</option>
         </select>
         <br>
         Content:
@@ -61,4 +61,8 @@
     </form>
 </div>
 <script src="{{ url_for('static',filename='script/editor.js') }}"></script>
+<script>
+    editor.setOption('theme',"{{ theme }}");
+    document.querySelector("option[value={{ theme }}]").setAttribute('selected',null);
+</script>
 {% endblock content %}
