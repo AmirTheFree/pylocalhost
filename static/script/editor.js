@@ -12,6 +12,8 @@ var editor = CodeMirror.fromTextArea(document.getElementById('content'),{
 
 editor.setSize('auto',330);
 
+editor.setOption('keymap','sublime');
+
 document.getElementById('type').addEventListener('change', function () {
     editor.setOption('mode', langs[document.getElementById('type').options.selectedIndex])
 });
