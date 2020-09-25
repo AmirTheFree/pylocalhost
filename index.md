@@ -1,37 +1,103 @@
-## Welcome to GitHub Pages
+**_In the name of Allah_**
 
-You can use the [editor on GitHub](https://github.com/mwxgaf/pylocalhost/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Description
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This is a web-based file explorer and its root path is your `~/Pylocalhost` directory. It is useful for serving HTML files,Ajax,PHP and every thing that needs a webserver.Its file explorer has a sweet GUI.Its simple and lightweight! Enjoy! :heavy_check_mark: 
 
-### Markdown
+![GUI](https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/static/image/explorer.png)
+![404](https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/static/image/404.png)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+We try to make it better. You can help us too! How? By submitting your issues (if you have) or making pull requests!
 
-```markdown
-Syntax highlighted code block
+## Prerequisites
 
-# Header 1
-## Header 2
-### Header 3
+Before installtion you need: `nginx` & `git`
 
-- Bulleted
-- List
+If you don't have them try installing theme
+(Exmaple for Ubuntu):
 
-1. Numbered
-2. List
+`$ sudo apt install nginx git`
 
-**Bold** and _Italic_ and `Code` text
+If you want Pylocalhost to serve and render PHP files you will also need `php-fpm` Version 7.0 or higher(Exmaple for Ubuntu):
 
-[Link](url) and ![Image](src)
-```
+`$ sudo apt install php7.4 php7.4-fpm`
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+`$ sudo systemctl enable --now php7.4-fpm`
 
-### Jekyll Themes
+## Installation
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mwxgaf/pylocalhost/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Download `preinstaller.py` file from [here](https://github.com/mwxgaf/pylocalhost/releases/download/v1.2/preinstaller.py)
 
-### Support or Contact
+After that just run the file with **python 3**:
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+`$ python3 preinstaller.py`
+
+In some OSs may be you must type `python` instead of `python3`
+
+Then run the `installer.py` file(it will be created once you ran `preinstaller.py`) with **python 3** under **sudo**:
+
+`$ sudo python3 installer.py`
+
+It will show you details. If installation was unsuccessful please submit an issue including details and your system info.
+
+*For installing Beta versin view the README.md in repository*
+
+## Usage
+
+Run:
+
+`$ sudo pylh enable`
+
+And then:
+
+`$ sudo pylh start`
+
+Then go to [http://localhost](http://localhost)
+
+It will show you anything which is in `~/Pylocalhost` and always it will start automatically when you turn your computer on :heavy_check_mark: 
+
+Just this! :heavy_check_mark: 
+
+_**This descriptions are for starting using PyLocalHost. In user manual page(which is in PyLocalHost) you can learn using PyLocalHosts futures and options**_.
+
+## Update
+
+To be honest, the installer is uninstaller and insaller! So follow the installion process to update the software!
+
+And then run:(to prevent possible problems):
+
+`$ sudo pylh restart`
+
+## Info
+
+***Used tools:***
+
+* Python
+    * Flask
+    * Jinja
+    * GUnicorn
+    * [MWXpy](https://github.com/mwxgaf/mwxpy)
+* HTML
+* CSS
+* JavaScript
+    * JSON
+* Bash script
+* Nginx
+
+_Made by an Iranian_ :iran:
+
+#### Be comfortable to submit pull requests and issues :heavy_check_mark: 
+
+## Email Us
+
+[pylh@mwxg.ir](mailto:pylh@mwxg.ir)
+
+## About Us
+
+Founder : Amirreza Aliakbari (MWX)
+
+Website : [i.mwxg.ir](https://i.mwxg.ir)
+
+Weblog : [mwxgaf.ir](http://mwxgaf.ir)
+
+Email : [mwxgaf@yahoo.com](mailto:mwxgaf@yahoo.com)
