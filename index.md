@@ -26,7 +26,7 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 ## Installation
 
-Download `preinstaller.py` file from [here](https://github.com/mwxgaf/pylocalhost/releases/download/v1.2/preinstaller.py)
+Download `preinstaller.py` file from [here](https://github.com/mwxgaf/pylocalhost/releases/download/v1.3/preinstaller.py)
 
 After that just run the file with **python 3**:
 
