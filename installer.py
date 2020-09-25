@@ -30,7 +30,7 @@ sys.stdout.write(colors['YELLOW'])
 print('MWX\nmwxgaf.ir\nTwitter: @mwxgaf\n')
 time.sleep(2)
 
-print('PyLocalhost\n\npylh.mwxg.ir\npylh@mwxg.ir\n\n')
+print('PyLocalhost\n\nmwxgaf.github.io/pylocalhost\npylh@mwxg.ir\n\n')
 time.sleep(2)
 
 # Making atexit function
@@ -83,7 +83,7 @@ try:
     preinfofile = open('pylhinfo.json')
 except FileNotFoundError:
     sys.stdout.write(colors['RED'])
-    print('Could not find pylhinfo.json file!\nPlease read the installation guid from this link:\nhttps://pylh.mwxg.ir/install/')
+    print('Could not find pylhinfo.json file!\nPlease read the installation guid from this link:\nhttps://mwxgaf.github.io/pylocalhost')
     sys.exit(404)
 preinfo = json.load(preinfofile)
 info['home'] = preinfo['home']

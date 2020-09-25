@@ -7,8 +7,8 @@
 
 This is a web-based file explorer and its root path is your `~/Pylocalhost` directory. It is useful for serving HTML files,Ajax,PHP and every thing that needs a webserver.Its file explorer has a sweet GUI.Its simple and lightweight! Enjoy! :heavy_check_mark: 
 
-![GUI](https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/static/image/explorer.png)
-![404](https://raw.githubusercontent.com/mwxgaf/pylocalhost/master/static/image/404.png)
+![GUI](https://raw.githubusercontent.com/mwxgaf/pylocalhost/gh-pages/home.png)
+![404](https://raw.githubusercontent.com/mwxgaf/pylocalhost/gh-pages/editor.png)
 
 We try to make it better. You can help us too! How? By submitting your issues (if you have) or making pull requests!
 
