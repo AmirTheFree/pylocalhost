@@ -90,7 +90,7 @@ var index = 0;
 
 var items = document.getElementsByClassName('col');
 
-for (let i = 0; i < items.length; i++) {
+for (var i = 0; i < items.length; i++) {
     items[i].classList.add(cls[index]);
     items[i].addEventListener('contextmenu', function (e) {
         rightclick(items[i], e);
