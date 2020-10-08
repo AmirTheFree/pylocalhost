@@ -100,4 +100,4 @@ Website : [i.mwxg.ir](https://i.mwxg.ir)
 
 Weblog : [mwxgaf.ir](http://mwxgaf.ir)
 
-Email : [mwxgaf@yahoo.com](mailto:mwxgaf@yahoo.com)
+Email : [i@mwxg.ir](mailto:i@mwxg.ir)
