@@ -285,6 +285,10 @@ remove_or_go('/etc/nginx/sites-enabled/pylocalhost')
 os.symlink('/etc/nginx/sites-available/pylocalhost',
            '/etc/nginx/sites-enabled/pylocalhost')
 
+hosts_file = open('/etc/hosts','a')
+hosts_file.write('\n127.0.0.1  pylh\n127.0.0.1  pylocalhost')
+hosts_file.close()
+
 print('Reloading Systemctl daemon ...')
 
 run('sudo systemctl daemon-reload')

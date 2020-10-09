@@ -18,7 +18,7 @@ def check_host():
     host = mwxpy.rwjson('info.json')['host']
 
     if not host:
-        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
 
 
@@ -36,7 +36,7 @@ def guid():
 
 @app.route('/config/', methods=['GET','POST'])
 def settings():
-    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
     inf = mwxpy.rwjson('info.json')
     if request.method == 'POST':
@@ -55,7 +55,7 @@ def settings():
 
 @app.route('/stopjupyter/', methods =['GET'])
 def kill():
-    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
         abort(403)
     for n in notebooks:
         env = dict(os.environ)
@@ -73,7 +73,7 @@ def explorer(p):
     if request.args.get('dl') == 'true':
         return redirect(f'http://{request.host}/d/' + p)
     if request.args.get('run') == 'true':
-        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
         if p.lower().endswith('.py'):
             try:
@@ -91,7 +91,7 @@ def explorer(p):
             return '<span style="font-weight:bold;color: red;">PyLocalHost is only able to run Javascript or Python scripts</span>',400
         
     if request.args.get('sysopen') == 'true':
-        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
         try:
             env = dict(os.environ)
@@ -101,7 +101,7 @@ def explorer(p):
         except:
             return 'Requesting from system was not successful',500
     if request.args.get('rm') == 'true':
-        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+        if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
         try:
             os.popen(f'rm -rf {path}')
@@ -110,7 +110,7 @@ def explorer(p):
             return 'Requesting from system was not successful',500
     if os.path.isdir(path) or os.path.ismount(path):
         if request.args.get('notebook') == 'true':
-            if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+            if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
                 abort(403)
             try:
                 env = dict(os.environ)
@@ -131,7 +131,7 @@ def explorer(p):
 
 @app.route('/editor/', methods = ['GET', 'POST'])
 def editor():
-    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
     if not isinstance(request.args.get('path',False),str):
         abort(400)
@@ -154,7 +154,7 @@ def editor():
 
 @app.route('/newfolder/', methods=['GET'])
 def new_folder():
-    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
     if not isinstance(request.args.get('path',False),str) or not request.args.get('name',False):
         abort(400)
@@ -166,7 +166,7 @@ def new_folder():
 
 @app.route('/rename/', methods=['GET'])
 def rename():
-    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1')):
+    if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
     if not isinstance(request.args.get('path',False),str) or not request.args.get('name',False) or not request.args.get('new',False):
         abort(400)
