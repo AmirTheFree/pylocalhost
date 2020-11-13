@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a web-based file explorer and its root path is your `~/Pylocalhost` directory. It is useful for serving HTML files,Ajax,PHP and every thing that needs a webserver.Its file explorer has a sweet GUI.Its simple and lightweight! Enjoy! :heavy_check_mark: 
+This is a web-based file explorer and its root path is your `~/Pylocalhost` directory. It is useful for serving HTML files,Ajax,PHP and every thing that needs a webserver.Its file explorer has a sweet GUI.Its simple and lightweight! Enjoy!
 
 ![home](https://raw.githubusercontent.com/mwxgaf/pylocalhost/gh-pages/home.png)
 ![editor](https://raw.githubusercontent.com/mwxgaf/pylocalhost/gh-pages/editor.png)
@@ -26,7 +26,7 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 ## Installation
 
-Download `preinstaller.py` file from [here](https://github.com/mwxgaf/pylocalhost/releases/download/v1.3/preinstaller.py)
+Download `preinstaller.py` file from [here](https://github.com/mwxgaf/pylocalhost/releases/download/v1.4/preinstaller.py)
 
 After that just run the file with **python 3**:
 
@@ -54,15 +54,15 @@ And then:
 
 Then go to [http://localhost](http://localhost)
 
-It will show you anything which is in `~/Pylocalhost` and always it will start automatically when you turn your computer on :heavy_check_mark: 
+It will show you anything which is in `~/Pylocalhost` and always it will start automatically when you turn your computer on
 
-Just this! :heavy_check_mark: 
+Just this!
 
 _**This descriptions are for starting using PyLocalHost. In user manual page(which is in PyLocalHost) you can learn using PyLocalHosts futures and options**_.
 
 ## Update
 
-To be honest, the installer is uninstaller and insaller! So follow the installion process to update the software!
+To be honest, the installer is uninstaller and insaller! So follow the installation process to update the software!
 
 And then run:(to prevent possible problems):
 
@@ -84,9 +84,9 @@ And then run:(to prevent possible problems):
 * Bash script
 * Nginx
 
-_Made by an Iranian_ :iran:
+_Made by an Iranian_
 
-#### Be comfortable to submit pull requests and issues :heavy_check_mark: 
+#### Be comfortable to submit pull requests and issues
 
 ## Email Us
 
