@@ -27,7 +27,7 @@ print('In the name of Allah\n')
 time.sleep(2)
 
 sys.stdout.write(colors['YELLOW'])
-print('MWX\nmwxgaf.ir\nTwitter: @mwxgaf\n')
+print('MWX\ni.mwxg.ir\ni@mwxg.ir\nTwitter: @mwxgaf\n')
 time.sleep(2)
 
 print('PyLocalhost\n\nmwxgaf.github.io/pylocalhost\npylh@mwxg.ir\n\n')
