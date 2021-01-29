@@ -24,7 +24,7 @@ app.config['SECRET_KEY'] = mwxpy.rwjson('info.json')['secret']
 @app.before_request
 def security_check():
     ips = mwxpy.rwjson('info.json')['ips']
-    if request.environ.get('REMOTE_ADDR') in ips:
+    if request.remote_addr in ips:
         abort(403)
 
     host = mwxpy.rwjson('info.json')['host']
@@ -37,6 +37,7 @@ def security_check():
 def information_setup():
     session.permanent = True
     app.permanent_session_lifetime = timedelta(days=3650)
+
 
 @app.route('/about/', methods=['GET'])
 def about():
@@ -203,11 +204,13 @@ def rename():
 
 @app.route('/login/', methods=['GET'])
 def login():
+    print(request.remote_addr)
+    print(request.environ.get('REMOTE_ADDR'))
     if session.get('id', False) != h.hexdigest():
         if request.args.get('pw', False):
             if str(request.args['pw']) == password:
                 for i in dangerous_ips:
-                    if i.address == request.environ.get('REMOTE_ADDR'):
+                    if i.address == request.remote_addr:
                         dangerous_ips.remove(i)
                 H = hashlib.sha256()
                 H.update(str(request.args['pw']).encode('utf-8'))
@@ -215,11 +218,11 @@ def login():
                 return '<head><meta http-equiv="refresh" content="3;url=http://pylh/"></head><body><h1 style="color:green;">Login Successful! Redirecting ...</h1></body>'
             else:
                 for i in dangerous_ips:
-                    if i.address == request.environ.get('REMOTE_ADDR'):
+                    if i.address == request.remote_addr:
                         if i.register_attemp():
                             dangerous_ips.remove(i)
                         abort(401)
-                dangerous_ips.append(utils.DangerousIP(request.environ.get('REMOTE_ADDR')))
+                dangerous_ips.append(utils.DangerousIP(request.remote_addr))
                 abort(401)
         else:
             return render_template('login.html')
