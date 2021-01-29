@@ -1,13 +1,16 @@
 # In the name of Allah
 
-from flask import Flask, abort, render_template, request, jsonify, redirect
+from flask import Flask, abort, render_template, request, jsonify, redirect,session
+from datetime import timedelta
 import os
 import forms
 import mwxpy
 import subprocess
+import hashlib
 
 home = mwxpy.rwjson('info.json')['home']
 python = mwxpy.rwjson('info.json')['python']
+password = mwxpy.rwjson('info.json')['password']
 notebooks = []
 
 app = Flask(__name__)
@@ -20,6 +23,11 @@ def check_host():
     if not host:
         if not ((request.host == 'localhost' and request.url.split('/')[2]) == 'localhost' or (request.host == '127.0.0.1' and request.url.split('/')[2] == '127.0.0.1') or (request.host == 'pylh' and request.url.split('/')[2] == 'pylh') or (request.host == 'pylocalhost' and request.url.split('/')[2] == 'pylocalhost')):
             abort(403)
+
+@app.before_request
+def set_session_time():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(days=3650)
 
 
 @app.route('/about/', methods=['GET'])
@@ -175,3 +183,16 @@ def rename():
         return redirect(f'http://{request.host}/' + request.args['path'])
     except:
         return '<span style="font-weight:bold;color:red;">An Error occurred while renaming item</span>'
+
+@app.route('/login/', methods=['GET'])
+def login():
+    if request.args.get('pw',False):
+        if str(request.args['pw']) == password:
+            h = hashlib.sha256()
+            h.update(str(request.args['pw']).encode('utf-8'))
+            session['id'] = h.hexdigest()
+            return '<head><meta http-equiv="refresh" content="3;url=http://pylh/"></head><body><h1 style="color:green;">Login Successful! Redirecting ...</h1></body>'
+        else:
+            abort(401)
+    else:
+        return render_template('login.html')

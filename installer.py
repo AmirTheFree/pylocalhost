@@ -20,8 +20,7 @@ colors = {
 }
 
 info = {'python': None, 'license_accepted': False,
-        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':False,'secret':None,'jupyter_installed':False,'show_hidden_files':False,'theme':'monokai'}
-
+        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':False,'secret':None,'jupyter_installed':False,'show_hidden_files':False,'theme':'monokai','password':None}
 sys.stdout.write(colors['MAGENTA'])
 print('In the name of Allah\n')
 time.sleep(2)
@@ -152,7 +151,7 @@ print('Python version 3 found! Starting installtion ...\n')
 # Checking PHP_FPM
 sys.stdout.write(colors['CYAN'])
 print('Checking PHP FPM ...')
-for p in ['7.0', '7.1', '7.2', '7.3', '7.4']:
+for p in ['7.0', '7.1', '7.2', '7.3', '7.4','8.0']:
     if os.popen('which php-fpm'+p).read().startswith('/'):
         info['php'] = p
 if not info['php']:
@@ -326,6 +325,7 @@ except:
 
 print('Making secret key ...')
 info['secret'] = str(random.randint(10000000000000,99999999999999))
+info['password'] = str(random.randint(10000,99999))
 
 print('Finalizing installtion ...')
 
@@ -333,6 +333,8 @@ time.sleep(2)
 info['installtion_complete'] = True
 
 sys.stdout.write(colors['GREEN'])
-print('\nDone! :)')
+print('\nDone! :)\n')
+sys.stdout.write(colors['MAGENTA'])
+print('>>> Your Password is ' + info['password'] + ' <<< Use it to login')
 
 sys.exit(0)
