@@ -20,7 +20,7 @@ colors = {
 }
 
 info = {'python': None, 'license_accepted': False,
-        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':True,'secret':None,'jupyter_installed':False,'show_hidden_files':False,'theme':'monokai','password':None}
+        'installtion_complete': False, 'username': None, 'home': None, 'php': None,'host':True,'secret':None,'jupyter_installed':False,'show_hidden_files':False,'theme':'monokai','password':None,'ips':[]}
 sys.stdout.write(colors['MAGENTA'])
 print('In the name of Allah\n')
 time.sleep(2)

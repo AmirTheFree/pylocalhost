@@ -16,3 +16,17 @@ def secure_api(func):
         return func(*args,**kwargs)
     return decorator
 
+class DangerousIP:
+    def __init__(address):
+        self.address = address
+        self.chances = 5
+    def register_attemp():
+        if self.chances == 0:
+            data = mwxpy.rwjson('info.json')
+            data['ips'].append(self.address)
+            mwxpy.rwjson('info.json',data)
+            return True
+        self.chances -= 1
+        return False
+
+

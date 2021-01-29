@@ -15,25 +15,28 @@ password = mwxpy.rwjson('info.json')['password']
 h = hashlib.sha256()
 h.update(password.encode('utf-8'))
 notebooks = []
+dangerous_ips = []
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = mwxpy.rwjson('info.json')['secret']
 
 
 @app.before_request
-def check_host():
-    host = mwxpy.rwjson('info.json')['host']
+def security_check():
+    ips = mwxpy.rwjson('info.json')['ips']
+    if request.environ.get('REMOTE_ADDR') in ips:
+        abort(403)
 
+    host = mwxpy.rwjson('info.json')['host']
     if not host:
         if session.get('id', False) != h.hexdigest():
             abort(403)
 
 
 @app.before_request
-def set_session_time():
+def information_setup():
     session.permanent = True
     app.permanent_session_lifetime = timedelta(days=3650)
-
 
 @app.route('/about/', methods=['GET'])
 def about():
@@ -203,11 +206,20 @@ def login():
     if session.get('id', False) != h.hexdigest():
         if request.args.get('pw', False):
             if str(request.args['pw']) == password:
+                for i in dangerous_ips:
+                    if i.address == request.environ.get('REMOTE_ADDR'):
+                        dangerous_ips.remove(i)
                 H = hashlib.sha256()
                 H.update(str(request.args['pw']).encode('utf-8'))
                 session['id'] = H.hexdigest()
                 return '<head><meta http-equiv="refresh" content="3;url=http://pylh/"></head><body><h1 style="color:green;">Login Successful! Redirecting ...</h1></body>'
             else:
+                for i in dangerous_ips:
+                    if i.address == request.environ.get('REMOTE_ADDR'):
+                        if i.register_attemp():
+                            dangerous_ips.remove(i)
+                        abort(401)
+                dangerous_ips.append(utils.DangerousIP(request.environ.get('REMOTE_ADDR')))
                 abort(401)
         else:
             return render_template('login.html')
