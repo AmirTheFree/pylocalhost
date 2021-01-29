@@ -20,10 +20,10 @@ img:hover {
 
 div.grid-container-info {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
     position: absolute;
     left: 50%;
-    transform: translateX(-158px);
+    transform: translateX(-196px);
     margin-top: 20px;
 }
 
