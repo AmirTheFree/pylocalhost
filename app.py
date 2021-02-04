@@ -218,7 +218,7 @@ def login():
                 H = hashlib.sha256()
                 H.update(str(request.args['pw']).encode('utf-8'))
                 session['id'] = H.hexdigest()
-                return '<head><meta http-equiv="refresh" content="3;url=http://pylh/"></head><body><h1 style="color:green;">Login Successful! Redirecting ...</h1></body>'
+                return '<head><meta http-equiv="refresh" content="2;url=http://' + request.host + '"></head><body><h1 style="color:green;">Login Successful! Redirecting ...</h1></body>'
             else:
                 for i in dangerous_ips:
                     if i.address == g.ip:
@@ -230,4 +230,4 @@ def login():
         else:
             return render_template('login.html')
     else:
-        return 'You are already logged in <a href="http://pylh">Back to home</a>'
+        return 'You are already logged in <a href="http://' + request.host + '">Back to home</a>'
