@@ -19,13 +19,12 @@ def secure_api(func):
 class DangerousIP:
     def __init__(self,address):
         self.address = address
-        self.chances = 5
+        self.chances = 4
     def register_attemp(self):
         if self.chances == 0:
             data = mwxpy.rwjson('info.json')
             data['ips'].append(self.address)
             mwxpy.rwjson('info.json',data)
-            print(data)
             return True
         self.chances -= 1
         return False
