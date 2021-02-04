@@ -19,14 +19,20 @@
         </a>
     </div>
     <hr>
-    NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the end
-    of directory urls.
+    <h4>Logging in:</h4>
+    Installer will give you a 5 digit password for loggin in. If you don't login you wont be able to use all Pylocalhost
+    options; that means PyLocalHost will be read-only for you or anyone else who did not log in.Remember anyone can
+    login to your PyLocalHost if he know your password and also can use your PyLocalHost in read-only mode even if he
+    does not have your password. You can prevent this by disallowing requests from unknown hosts in settings.
     <br>
-    For example:
+    You can go here => <a href="{{ url_for('login') }}"><img src="{{ url_for('static',filename='image/login.png') }}"
+            alt="Login" height="40px" width="40px" style="margin-bottom: -10px;"></a> in order to login.
     <br>
-    http://localhost/folder1/folder2/ (Returns the GUI file manager) --> http://localhost/folder1/folder2/?api=true (Returns
-    JSON)
-    <br><br>
+    <br>
+    If you have forgotted your password run this to see it again:
+    <br>
+    <br>
+    <code>$ sudo pylh password</code>
     <hr>
     <h4>CLI Usage:</h4>
     <code>$ sudo pylh &lt;command&gt;</code>
@@ -39,6 +45,7 @@
         <li>restart --> Reload config files & restart Pylocalhost</li>
         <li>enable --> Enable run as start up for Pylocalhost</li>
         <li>disable --> Disable run as start up for Pylocalhost</li>
+        <li>password --> Print your password</li>
         <li>help --> Show help</li>
         <li>? --> Show help</li>
     </ul>
@@ -48,16 +55,14 @@
         <br>
         Allow this option if you want to share your Pylocalhost over network
         <br>
-        If you disallow this option Pylocalhost will be available only from http://localhost or http://127.0.0.1 so other
-        people cannot accesss to your pylocalhost and it is only accessible form your computer and localhost(or its ip : 127
-        ...)
+        If you disallow this option Pylocalhost will be available only for logged-in users so other
+        people cannot access to your pylocalhost.
         <br>
-        NOTE: This option is disallowed by default
+        NOTE: This option is allowed by default
         <br>
-        WARNING: If you allow this option your Pylocalhost will be shared over network be sure and aware about what are you
+        WARNING: If you allow this option your Pylocalhost will be shared over network be sure and aware about what are
+        you
         doing.
-        <br>
-        NOTE: Settings part won't be accessible by other people even if you allow this option.
     </p>
     <p>
         <b>Show hidden files:</b>
@@ -88,7 +93,8 @@
     <br>
     <div class="toolhelp">
         <img src="{{ url_for('static',filename='image/opencurrent.png') }}" alt="open current folder">
-        <div>Opens the current directory using your systems default file browser/manager. If it fails nothing will happen</div>
+        <div>Opens the current directory using your systems default file browser/manager. If it fails nothing will
+            happen</div>
     </div>
     <br>
     <div class="toolhelp">
@@ -99,7 +105,8 @@
     <div class="toolhelp">
         <img src="{{ url_for('static',filename='image/jupyter.png') }}" alt="start jupyter notebook here">
         <div>
-            Starts a Jupyter notebook on current directory.(If you had accepted Jupyter installation when you was installing PyLocalHost)
+            Starts a Jupyter notebook on current directory.(If you had accepted Jupyter installation when you was
+            installing PyLocalHost)
         </div>
         <br>
         If it fails nothing will happen
@@ -124,15 +131,15 @@
     <br><br>
     <hr>
     <h4>Right click menu guid</h4>
-    <i>By right clicking on a file,folder or ... you can see a list of actions that you can do with that file or ...:</i>
+    <i>By right clicking on a file,folder or ... you can see a list of actions that you can do with that file or
+        ...:</i>
     <br>
-    <u>NOTE: Items with * just can be used from the computer which PyLocalHost is installed 
-    on it (Just from 127.0.0.1 or localhost) even if the owner accepted access to PyLocalHost from unknown hosts</u>
+    <u>NOTE: Items with * just can be used by logged-in users</u>
     <br>
     <br>
     <span class="static">View source</span> => Shows the raw file as a plain text
     <br>
-    <span class="static">Download</span> =>  Download the item
+    <span class="static">Download</span> => Download the item
     <br>
     <span class="static">Delete *</span> => Deletes item
     <br>
@@ -140,17 +147,28 @@
     <br>
     <span class="static">Edit *</span> => Opens editor in order to edit the file
     <br>
-    <span class="static">Open with OS *</span> => Opens the item using suggested software of your operating system. If it fails nothing will happen
+    <span class="static">Open with OS *</span> => Opens the item using suggested software of your operating system. If
+    it fails nothing will happen
     <br>
     <span class="static">Run script *</span> => Runs the file (Just Python & JavaScript files) and shows output
     <br>
     <br>
     <hr>
+    NOTE : Pylocalhost will return you a JSON api including info of contents of a directory if you add ?api=ture at the
+    end
+    of directory urls.
+    <br>
+    For example:
+    <br>
+    http://pylh/folder1/folder2/ (Returns the GUI file manager) --> http://pylh/folder1/folder2/?api=true (Returns
+    JSON)
+    <br><br>
+    <hr>
     <b>More at: <a href="https://mwxgaf.github.io/pylocalhost">mwxgaf.github.io/pylocalhost</a>
         <br>
-        Our Email: <a href="mailto:pylh@mwxg.ir">pylh@mwxg.ir</a>
+        Our Email: <a href="mailto:i@mwxg.ir">i@mwxg.ir</a>
     </b>
     <p class="support">Please submit an issue in <u><b><i><a href="https://github.com/mwxgaf/pylocalhost">our
-    Github</a></i></b></u> if you have a problem or question.</p>
+                        Github</a></i></b></u> if you have a problem or question.</p>
 </div>
 {% endblock content %}
