@@ -2,4 +2,4 @@
 
 from mwxpy import rwjson
 
-print(rwjson('info.json')['password'])
+print(rwjson('/etc/pylocalhost/info.json')['password'])
