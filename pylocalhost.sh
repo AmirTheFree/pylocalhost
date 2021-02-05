@@ -24,7 +24,7 @@ then
     /etc/pylocalhost/.venv/bin/python /etc/pylocalhost/password.py
 elif [[ "$1" == "help" || "$1" == "?" ]]
 then
-    echo -e "In the name of Allah\n\nPyLocalhost v1.4\n\nWebsite: https://mwxgaf.github.io/pylocalhost\nEmail: pylh@mwxg.ir\n\nUsage: pylh <command>\n\nCommands:\n  start --> Start Pylocalhost\n  stop --> Stop Pylocalhost\n  restart --> Reload config files & restart Pylocalhost\n  enable --> Enable run as startup for Pylocalhost\n  disable --> Disable run as startup for Pylocalhost and probably stop it\n  help --> Show this help\n  ? --> Show this help\n\nBy: Amirreza Aliakbari (MWX)\nWebsite: i.mwxg.ir\nEmail: i@mwxg.ir"
+    echo -e "In the name of Allah\n\nPyLocalhost v1.5\n\nWebsite: https://mwxgaf.github.io/pylocalhost\nEmail: i@mwxg.ir\n\nUsage: pylh <command>\n\nCommands:\n  start --> Start Pylocalhost\n  stop --> Stop Pylocalhost\n  restart --> Reload config files & restart Pylocalhost\n  enable --> Enable run as startup for Pylocalhost\n  disable --> Disable run as startup for Pylocalhost and probably stop it\n  password --> See your password\n  help --> Show this help\n  ? --> Show this help\n\nBy: Amirreza Aliakbari (MWX)\nWebsite: i.mwxg.ir\nEmail: i@mwxg.ir"
 else
     echo -e "\nInvalid command!\nRun 'pylh help' for help\n"
 fi
