@@ -29,7 +29,7 @@ sys.stdout.write(colors['YELLOW'])
 print('MWX\ni.mwxg.ir\ni@mwxg.ir\nTwitter: @mwxgaf\n')
 time.sleep(2)
 
-print('PyLocalhost\n\nmwxgaf.github.io/pylocalhost\npylh@mwxg.ir\n\n')
+print('PyLocalhost\n\nmwxgaf.github.io/pylocalhost\ni@mwxg.ir\n\n')
 time.sleep(2)
 
 # Making atexit function
