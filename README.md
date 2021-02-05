@@ -59,7 +59,7 @@ And then:
 
 `$ sudo pylh start`
 
-Then go to [http://localhost](http://localhost)
+Then go to [http://pylh](http://pylh)
 
 It will show you anything which is in `~/Pylocalhost` and always it will start automatically when you turn your computer on :heavy_check_mark: 
 
