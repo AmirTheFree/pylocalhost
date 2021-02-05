@@ -20,13 +20,13 @@ If you don't have them try installing theme
 
 If you want Pylocalhost to serve and render PHP files you will also need `php-fpm` Version 7.0 or higher(Exmaple for Ubuntu):
 
-`$ sudo apt install php7.4 php7.4-fpm`
+`$ sudo apt install php8.0 php8.0-fpm`
 
-`$ sudo systemctl enable --now php7.4-fpm`
+`$ sudo systemctl enable --now php8.0-fpm`
 
 ## Installation
 
-Download `preinstaller.py` file from [here](https://github.com/mwxgaf/pylocalhost/releases/download/v1.4/preinstaller.py)
+Download `preinstaller.py` file from [here](https://github.com/mwxgaf/pylocalhost/releases/download/v1.5/preinstaller.py)
 
 After that just run the file with **python 3**:
 
@@ -90,13 +90,13 @@ _Made by an Iranian_
 
 ## Email Us
 
-[pylh@mwxg.ir](mailto:pylh@mwxg.ir)
+[i@mwxg.ir](mailto:i@mwxg.ir)
 
 ## About Us
 
 Founder : Amirreza Aliakbari (MWX)
 
-Website : [i.mwxg.ir](https://i.mwxg.ir)
+Website : [i.mwxg.ir](http://i.mwxg.ir)
 
 Weblog : [mwxgaf.ir](http://mwxgaf.ir)
 
