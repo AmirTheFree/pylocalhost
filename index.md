@@ -84,20 +84,14 @@ And then run:(to prevent possible problems):
 * Bash script
 * Nginx
 
-_Made by an Iranian_
+_Made in Iran_ 🇮🇷
 
 #### Be comfortable to submit pull requests and issues
-
-## Email Us
-
-[i@mwxg.ir](mailto:i@mwxg.ir)
 
 ## About Us
 
 Founder : Amirreza Aliakbari (MWX)
 
-Website : [i.mwxg.ir](http://i.mwxg.ir)
+Website : [mwxgaf.ir](http://mwxgaf.ir)
 
-Weblog : [mwxgaf.ir](http://mwxgaf.ir)
-
-Email : [i@mwxg.ir](mailto:i@mwxg.ir)
+Email : [mwxgaf@yahoo.com](mailto:mwxgaf@yahoo.com)
