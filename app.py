@@ -4,21 +4,21 @@ from flask import Flask, abort, render_template, request, jsonify, redirect, ses
 from datetime import timedelta
 import os
 import forms
-import mwxpy
+import mwx
 import subprocess
 import hashlib
 import utils
 
-home = mwxpy.rwjson('info.json')['home']
-python = mwxpy.rwjson('info.json')['python']
-password = mwxpy.rwjson('info.json')['password']
+home = mwx.rwjson('info.json')['home']
+python = mwx.rwjson('info.json')['python']
+password = mwx.rwjson('info.json')['password']
 h = hashlib.sha256()
 h.update(password.encode('utf-8'))
 notebooks = []
 dangerous_ips = []
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = mwxpy.rwjson('info.json')['secret']
+app.config['SECRET_KEY'] = mwx.rwjson('info.json')['secret']
 
 
 @app.before_request
@@ -28,11 +28,11 @@ def security_check():
     else:
         g.ip = request.environ['HTTP_X_FORWARDED_FOR']
 
-    ips = mwxpy.rwjson('info.json')['ips']
+    ips = mwx.rwjson('info.json')['ips']
     if g.ip in ips:
         abort(403)
 
-    host = mwxpy.rwjson('info.json')['host']
+    host = mwx.rwjson('info.json')['host']
     if not host:
         if session.get('id', False) != h.hexdigest():
             abort(403)
@@ -59,7 +59,7 @@ def guid():
 @app.route('/config/', methods=['GET', 'POST'])
 @utils.secure_api
 def settings():
-    inf = mwxpy.rwjson('info.json')
+    inf = mwx.rwjson('info.json')
     if request.method == 'POST':
         form = forms.SettingsForm(request.form)
         if not form.validate_on_submit():
@@ -67,7 +67,7 @@ def settings():
         inf['host'] = True if form.host.data == '1' else False
         inf['show_hidden_files'] = True if form.show_hidden_files.data == '1' else False
         inf['theme'] = form.theme.data
-        mwxpy.rwjson('info.json', inf)
+        mwx.rwjson('info.json', inf)
         return redirect(f'http://{request.host}')
 
     form = forms.SettingsForm()
@@ -92,8 +92,8 @@ def kill():
 def explorer(p):
     root = os.path.join(home, 'Pylocalhost')
     path = os.path.join(root, p)
-    show_hidden_files = mwxpy.rwjson('info.json')['show_hidden_files']
-    jupyter_installed = '1' if mwxpy.rwjson(
+    show_hidden_files = mwx.rwjson('info.json')['show_hidden_files']
+    jupyter_installed = '1' if mwx.rwjson(
         'info.json')['jupyter_installed'] else '0'
     if request.args.get('dl') == 'true':
         return redirect(f'http://{request.host}/d/' + p)
@@ -148,7 +148,7 @@ def explorer(p):
                 return 'Requesting from system was not successfull!', 500
         if request.args.get('srvdir') == 'true':
             return redirect(f'http://{request.host}/s/' + p)
-        ls = mwxpy.browse(path, show_hidden_files)
+        ls = mwx.browse(path, show_hidden_files)
         return jsonify(ls) if request.args.get('api') == 'true' else render_template('explorer.html', ls=ls, p=p, rp=f'http://{request.host}', jupyter=jupyter_installed)
     elif os.path.isfile(path) or os.path.islink(path):
         return redirect(f'http://{request.host}/s/' + p)
@@ -165,19 +165,19 @@ def editor():
     if request.args.get('file', False):
         form = forms.FileForm()
         form.name.data = request.args['file']
-        form.content.data = mwxpy.rwfile(os.path.join(
+        form.content.data = mwx.rwfile(os.path.join(
             home, 'Pylocalhost', request.args['path'], request.args['file']))
     if request.method == 'POST':
         form = forms.FileForm(request.form)
         if not form.validate_on_submit():
             abort(400)
         try:
-            mwxpy.rwfile(os.path.join(
+            mwx.rwfile(os.path.join(
                 home, 'Pylocalhost', request.args['path'], form.name.data), form.content.data)
             return redirect(f'http://{request.host}/' + request.args['path'])
         except:
             return '<span style="font-weight:bold;color:red;">An Error occurred while saving file!</span>'
-    inf = mwxpy.rwjson('info.json')
+    inf = mwx.rwjson('info.json')
     return render_template('editor.html', form=form, theme=inf['theme'])
 
 

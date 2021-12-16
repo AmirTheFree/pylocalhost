@@ -29,7 +29,7 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 ### Installation (Beta version)
 
-#### :point_right: NOTE: The version below is unstable(Beta) --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.6) for the latest stable version (1.6) :point_left:
+#### :point_right: NOTE: The version below is unstable(Beta) --> Click [Here](https://github.com/mwxgaf/pylocalhost/releases/tag/v1.6.1) for the latest stable version (1.6.1) :point_left:
 
 Download `preinstaller.py` file which is in the repository.
 
@@ -84,7 +84,7 @@ And then run:(to prevent possible problems):
     * Jinja
     * WTForms
     * GUnicorn
-    * [MWXpy](https://github.com/mwxgaf/mwxpy)
+    * [mwx](https://github.com/mwxgaf/mwx)
 * HTML
 * CSS
 * JavaScript
