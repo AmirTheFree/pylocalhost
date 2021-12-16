@@ -26,10 +26,10 @@ print('In the name of Allah\n')
 time.sleep(2)
 
 sys.stdout.write(colors['YELLOW'])
-print('MWX\ni.mwxg.ir\ni@mwxg.ir\nTwitter: @mwxgaf\n')
+print('MWX\nmwxgaf.ir\nmwxgaf@yahoo.com\nTwitter: @mwxgaf\n')
 time.sleep(2)
 
-print('PyLocalhost\n\nmwxgaf.github.io/pylocalhost\ni@mwxg.ir\n\n')
+print('PyLocalhost\n\nmwxgaf.github.io/pylocalhost\n\n')
 time.sleep(2)
 
 # Making atexit function
