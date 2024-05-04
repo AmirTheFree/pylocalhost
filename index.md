@@ -26,7 +26,7 @@ If you want Pylocalhost to serve and render PHP files you will also need `php-fp
 
 ## Installation
 
-Download `preinstaller.py` file from [here](https://github.com/mwxgaf/pylocalhost/releases/download/v1.6.1/preinstaller.py)
+Download `preinstaller.py` file from [here](https://github.com/OpenMindAmir/pylocalhost/releases/download/v1.6.1/preinstaller.py)
 
 After that just run the file with **python 3**:
 
@@ -40,7 +40,7 @@ Then run the `installer.py` file(it will be created once you ran `preinstaller.p
 
 It will show you details. If installation was unsuccessful please submit an issue including details and your system info.
 
-*For installing Beta versin view the README.md in repository*
+_For installing Beta versin view the README.md in repository_
 
 ## Usage
 
@@ -70,19 +70,19 @@ And then run:(to prevent possible problems):
 
 ## Info
 
-***Used tools:***
+**_Used tools:_**
 
-* Python
-    * Flask
-    * Jinja
-    * GUnicorn
-    * [MWXpy](https://github.com/mwxgaf/mwxpy)
-* HTML
-* CSS
-* JavaScript
-    * JSON
-* Bash script
-* Nginx
+- Python
+  - Flask
+  - Jinja
+  - GUnicorn
+  - [MWXpy](https://github.com/OpenMindAmir/mwxpy)
+- HTML
+- CSS
+- JavaScript
+  - JSON
+- Bash script
+- Nginx
 
 _Made in Iran_ 🇮🇷
 
@@ -92,6 +92,6 @@ _Made in Iran_ 🇮🇷
 
 Founder : Amirreza Aliakbari (MWX)
 
-Website : [mwxgaf.ir](http://mwxgaf.ir)
+Website : [OpenMindAmir.ir](https://OpenMindAmir.ir)
 
-Email : [mwxgaf@yahoo.com](mailto:mwxgaf@yahoo.com)
+Email : [OpenMindAmir@gmail.com](mailto:OpenMindAmir@gmail.com)
