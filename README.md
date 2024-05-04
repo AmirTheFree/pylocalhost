@@ -1,8 +1,6 @@
 # PyLocalHost
 ## A server for serving and rendering files in localhost + some interesting options
 
-**_In the name of Allah_**
-
 ### Description
 
 This is a web-based file explorer and its root path is your `~/Pylocalhost` directory. It is useful for serving HTML files,Ajax,PHP and every thing that needs a webserver.Its file explorer has a sweet GUI.Its simple and lightweight! Enjoy! :heavy_check_mark: 
