@@ -90,8 +90,8 @@ _Made in Iran_ 🇮🇷
 
 ## About Us
 
-Founder : Amirreza Aliakbari (MWX)
+Founder : Amirreza Aliakbari
 
-Website : [OpenMindAmir.ir](https://OpenMindAmir.ir)
+Website : [AmirTheFree.ir](https://AmirTheFree.ir)
 
-Email : [OpenMindAmir@gmail.com](mailto:OpenMindAmir@gmail.com)
+Email : [AmirTheFree@gmail.com](mailto:AmirTheFree@gmail.com)
